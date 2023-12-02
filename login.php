@@ -142,33 +142,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
+        html,body{
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  font-family: 'Poppins', sans-serif;
+  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+}
+        
         .login-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 40%;
+            background-color:rgba(255, 255, 255, 0.5);
+            width: 30%;
             margin: 0 auto;
-             
-                background: -webkit-linear-gradient(to right, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
-                background: linear-gradient(to right, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+             border-radius: 15%;
+             border: 2px solid white;
+            font-family: 'Poppins', sans-serif;
 
         }
                     input[type=email], input[type=password] {
             width: 100%;
             padding: 12px 20px;
-            margin: 8px 0;
+            margin: 15px 0;
             display: inline-block;
             border: 1px solid #ccc;
             box-sizing: border-box;
-            }
 
+
+  outline: none;
+  color: #999;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+            }
+            input[type=email], input[type=password]:focus::placeholder{
+             color: #b3b3b3;
+}
+input[type=email], input[type=password]::placeholder{
+  color: #999;
+  transition: all 0.3s ease;
+}
+ .pass-link a{
+  color: rgba(16, 10, 13, 0.88);
+  text-decoration: none;
+}
+.pass-link a:hover,
+.signup-link a:hover{
+  text-decoration: underline;
+}
         form {
             max-width: 30rem;
         }
         button {
-        background-color: #4CA1AF;
+            background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+            border-radius: 5px;
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
@@ -183,18 +216,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-<?php include("init/header.php") ?>
+
     <div class="login-container">
         <h2>Login</h2>
         <?php if (isset($error)) : ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
         <form method="POST" action="">
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required>
+            <!-- <label for="email">Email:</label><br> -->
+            <input type="email" id="email" name="email" placeholder="Email Address" required>
             <br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required>
+            <!-- <label for="password">Password:</label><br> -->
+            <input type="password" id="password" name="password" placeholder="Password"  required>
+            <div class="pass-link"><a href="#">Forgot password?</a></div>
             <br>
             <button type="submit" name="login" value="login">Login</button>
         </form>

@@ -55,9 +55,9 @@
     <ul class="navbar" id="menu">
     
       <li><a  class="navbutton" href="#home">Home</a></li>
-      <li><a class="navbutton" href="#services">Services</a></li>
-      <li><a class="navbutton" href="#about">About</a></li>
-      <li><a class="navbutton" href="#contact">Contact</a></li>
+      <li><a class="navbutton" href="#services">Polls</a></li>
+      <li><a class="navbutton" href="./login.php">SignIn</a></li>
+      <li><a class="navbutton" href="#contact">Register</a></li>
     
       </a>
     </ul>
@@ -65,23 +65,6 @@
   <div class="burger-menu"><a  class="burgermenu"> <i class="fa fa-bars "></i></a></div>
   
 
-
-
-
-<!-- 
-  <div class="mob-wrapper">
-
-  <a  class="burgermenu"> <i class="fa fa-bars "></i></a>
-
-<div class="mob-nav">
-<ul class="navbar" id="menu-mob">
-    
-    <li><a class="navbutton" href="#home">Home</a></li>
-    <li><a class="navbutton" href="#services">Services</a></li>
-    <li><a class="navbutton" href="#about">About</a></li>
-    <li><a  class="navbutton" href="#contact">Contact</a></li>
-    </a>
-  </ul> -->
 </div>
 
 
@@ -91,18 +74,3 @@
 
 
 
-
-
-
-<!-- 
-    <div id="navbar"> 
-  
-  <ul> 
-  <a id="logo" class="left" href="#"><img src="./css/logo1.png" alt=""></a>
-	<li><a href="http://github.com">Link 1</a></li> 
-	<li><a href="http://github.com">Link 2</a></li> 
-	<li><a href="http://github.com">Link 3</a></li> 
-	<li><a href="http://github.com">Link 4</a></li> 
-	<li><a href="http://github.com">Link 5</a></li> 
-  </ul> 
-</div>  -->
