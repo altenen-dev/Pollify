@@ -2,19 +2,13 @@
 
 include "./init/header.php";
 
-
-
-// include "init/side.php";
-
-
-
 ?>
 
 
 
 <div class="container">
 
-<h1>Poll Maker</h1>
+            <h1>Poll Maker</h1>
         <div class="poll-container">
             <?php 
             

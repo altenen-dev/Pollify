@@ -81,7 +81,9 @@
     text-transform: uppercase;
     transition: all 0.5s ease;
     -webkit-transition: all 0.5s ease;
+    
   }
+
   
   #navbar li a:hover {
     color: rgb(95, 16, 29);
@@ -112,7 +114,7 @@
   #navbar li a:hover:before {
     background: rgb(13, 26, 38);
     width: 100%;
-    transition: width 0.5s cubic-bezier((0.22, 0.61, 0.36, 1));
+    
   }
   
   #navbar li a:hover:after {

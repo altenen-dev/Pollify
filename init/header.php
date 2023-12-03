@@ -3,7 +3,7 @@
    <link rel="stylesheet" href="./css/style.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- i used a font from google fonts -->
+   <script src="https://kit.fontawesome.com/1b2b1806df.js" crossorigin="anonymous"></script>
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <!-- <script  type="text/javascript" src="assets/js/ajax.js"></script> -->
 
@@ -22,7 +22,13 @@
 <?php
 
 
+if (!empty($maintaince)){
 
+  header('Location: maintenance.php');
+
+  die('Maintenance'. $maintaince);
+
+}
 
 
 
@@ -54,10 +60,23 @@
  
     <ul class="navbar" id="menu">
     
-      <li><a  class="navbutton" href="#home">Home</a></li>
-      <li><a class="navbutton" href="#services">Polls</a></li>
-      <li><a class="navbutton" href="./login.php">SignIn</a></li>
-      <li><a class="navbutton" href="#contact">Register</a></li>
+      <li><a  class="navbutton" href="dashboard.php">Home</a></li>
+      <li><a class="navbutton" href="viewallpolls.php">Public Polls</a></li>
+      <?php 
+    
+        if (!($user -> LoggedIn() )){
+          echo '<li><a class="navbutton" href="./login.php">Sign In</a></li>
+           <li><a class="navbutton" href="./register.php">Register</a></li>';
+ 
+}else {
+  echo '
+  <li><a class="navbutton" href="./mangepolls.php">manage polls</a></li>
+  <span class"logout">  <li><a class="navbutton" href="./logout.php"><i class="fa-solid  fa-lg fa-arrow-right-from-bracket"  style="--fa-inverse: rgb(95, 16, 29);--fa-li-margin:0px"></i> Logout</a></li> </span>';
+}
+
+      
+      ?>
+      
     
       </a>
     </ul>

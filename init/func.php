@@ -24,7 +24,7 @@
 
 			@session_start();
 
-			if (isset($_SESSION['username'], $_SESSION['ID'])){
+			if (isset($_SESSION['user_id'], $_SESSION['user_name'])){
 
 				return true;
 

@@ -16,7 +16,8 @@
 
 		$sitename = $show['sitename'];
 
-	
+	$maintaince = $show['maintaince'];
+
 
 
 
