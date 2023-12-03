@@ -161,6 +161,8 @@ if (isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($sitename); ?> | Register Page</title>
+    <script src="https://kit.fontawesome.com/1b2b1806df.js" crossorigin="anonymous"></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <style>
@@ -192,13 +194,15 @@ if (isset($_SESSION['user_id'])) {
 		
         }
         .login-container {
-            display: flex;
+          display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             background-color:rgba(255, 255, 255, 0.88);
-            min-width: 35%;
             margin: 0 auto;
+            max-width: 26rem;
+		width: 90%;
+	
              border-radius: 15%;
              border: 2px solid white;
             font-family: 'Poppins', sans-serif;
@@ -233,6 +237,10 @@ input[type=email], input[type=password]::placeholder{
         form {
             max-width: 30rem;
         }
+        .login-container > form:nth-child(2) > a:nth-child(12){
+          padding:0 5rem;
+          margin:0 auto;
+        }
         button {
             background: -webkit-linear-gradient(left, #a445b2, #fa4299);
             border-radius: 5px;
@@ -253,7 +261,7 @@ input[type=email], input[type=password]::placeholder{
 <body>
 
     <div class="login-container">
-        <h2>Login</h2>
+        <h2>Signup</h2>
         <?php if (isset($error)) : ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
@@ -273,6 +281,7 @@ input[type=email], input[type=password]::placeholder{
             <button type="submit" name="signup" value="Sign up">Signup</button>
             <br>
             <p>You have an account? <a href="login.php">Login here</a></p>
+            <a  href="index.php">back to homepage <i class="fa-solid fa-house fa-lg" style="color: #000040;"></i></a>
         </form>
     </div>
 </body>

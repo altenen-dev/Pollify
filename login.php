@@ -63,6 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($sitename); ?> | Login Page</title>
+    <script src="https://kit.fontawesome.com/1b2b1806df.js" crossorigin="anonymous"></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <style>
@@ -86,12 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		
         }
         html,body{
-  display: grid;
-  height: 100%;
-  width: 100%;
-  place-items: center;
-  font-family: 'Poppins', sans-serif;
-  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+                display: grid;
+                height: 100%;
+                width: 100%;
+                place-items: center;
+                font-family: 'Poppins', sans-serif;
+                font-size:1rem;
+                background: -webkit-linear-gradient(left, #a445b2, #fa4299);
 }
         
         .login-container {
@@ -100,29 +103,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             justify-content: center;
             align-items: center;
             background-color:rgba(255, 255, 255, 0.88);
-            min-width: 35%;
+      
             margin: 0 auto;
+            max-width: 26rem;
+		width: 90%;
+	
              border-radius: 15%;
              border: 2px solid white;
             font-family: 'Poppins', sans-serif;
 
         }
-                    input[type=email], input[type=password] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 12px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
+                                    input[type=email], input[type=password] {
+                            width: 100%;
+                            padding: 12px 20px;
+                            margin: 12px 0;
+                            display: inline-block;
+                            box-sizing: border-box;
 
 
-  outline: none;
-  color: #999;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  border-bottom-width: 2px;
-  font-size: 17px;
-  transition: all 0.3s ease;
+                                outline: none;
+                                color: #999;
+                                border-radius: 5px;
+                                border: 1px solid lightgrey;
+                                border-bottom-width: 2px;
+                                font-size: 17px;
+                                transition: all 0.3s ease;
             }
             input[type=email], input[type=password]:focus::placeholder{
              color: #b3b3b3;
@@ -139,8 +144,10 @@ input[type=email], input[type=password]::placeholder{
 .signup-link a:hover{
   text-decoration: underline;
 }
-        form {
-            max-width: 30rem;
+.login-container > form:nth-child(2) > a:nth-child(12){
+          padding:0 5rem;
+        
+          text-decoration: none;
         }
         button {
             background: -webkit-linear-gradient(left, #a445b2, #fa4299);
@@ -177,6 +184,7 @@ input[type=email], input[type=password]::placeholder{
             <button type="submit" name="login" value="login">Login</button>
         </form>
         <p>Don't have an account? <a href="register.php">Register here</a></p>
+        <a  href="index.php">back to homepage <i class="fa-solid fa-house fa-lg" style="color: #000040;"></i></a>
     </div>
 </body>
 </html>
