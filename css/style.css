@@ -17,6 +17,7 @@
   ======================================================*/
   #navbar {
     background: white;
+    display: flex;
     color: rgb(13, 26, 38);
     position: fixed;
     top: 0;
@@ -24,10 +25,9 @@
     line-height: 60px;
     width: 100vw;
     z-index: 10;
+    flex-grow: 1;
   } 
-  #navbar {
-    display: flex;
-}
+ 
 
 .burgermenu {
     font-size: 1.5em;

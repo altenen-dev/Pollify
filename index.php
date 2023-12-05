@@ -5,35 +5,47 @@ include "./init/header.php"
 
 
     <header>
-        <h1>Welcome to Pollmaker!</h1>
+        <div class="banner">
+       Create a poll in easy steps
+       
+    </div>
     </header>
 
     <main>
-        <section class="polls">
-        <?php
+<br>
+    <h1 class="title"> Public Polls:</h1>
+    <div class="card-container">
+  
+<div class="card">
 
-$query = "SELECT qid, question, status, edate FROM polls WHERE status = 1";
-$result = $db ->query($query);
+<div class="card-content">
+<h3>Card 1</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqu</p>
+<a href="" class="btn">Read More</a>
+</div>
+</div>
+<div class="card">
 
-if($result->rowCount() > 0){
-    while($row= $result->fetch()){
-        echo "
-        <div class='poll-card'>
-            <h2 class='poll-title'>".$row['question']."</h2>
-            ";
-            if (!($row['edate'] == "")){
+<div class="card-content">
+<h3>Card 1</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqu</p>
+<a href="" class="btn">Read More</a>
+</div>
+</div>
+<div class="card">
 
-          echo"  <p class='poll-date'>Expiry Date: ".$row['edate']."</p>";
-        }
-         echo "  <a href='vote.php?qid=".$row['qid']."' class='poll-vote'>Vote Now</a>
-        </div>
-        ";
-    }
-} else {
-    echo "No active polls available.";
-}
-?>
-        </section>
+<div class="card-content">
+<h3>Card 1</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqu</p>
+<a href="" class="btn">Read More</a>
+</div>
+</div>
+    </div>
+
+        
     </main>
 
     <?php 
