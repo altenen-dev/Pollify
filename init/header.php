@@ -52,14 +52,16 @@ if (!empty($maintaince)){
 
 
     <nav id="navbar">
-  <div class="nav-wrapper ">
+  <!-- <div class="nav-wrapper "> -->
    
     <div class="logo">
       <a href="#home"><img width="100px" height="auto" src="./css/logo1.png"></a>
     </div>
 
- 
-    <ul class="navbar show  hide-on-small-screen" id="menu" >
+    <div class="toggle burger-menu"><a  class="burgermenu"> <i class="fa fa-bars "></i></a></div>
+          
+
+    <ul class="navbar   hide-on-small-screen" id="menu" >
     
       <li><a  class="navbutton" href="dashboard.php">Home</a></li>
       <li><a class="navbutton" href="viewallpolls.php">Public Polls</a></li>
@@ -79,12 +81,10 @@ if (!empty($maintaince)){
       ?>
       
     </ul>
-    <div class="burger-menu" onclick="toggleMenu()"><a  class="burgermenu"> <i class="fa fa-bars "></i></a></div>
-          
-  </div>
+    
   
 
-</div>
+<!-- </div> -->
 
 
 </nav>

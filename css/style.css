@@ -21,14 +21,11 @@
   gap: 0.25rem;
   padding: 0.25em 0;
   list-style: none;
-  margin: 0;
-  display: flex;
-  align-items: center;
   }
   #navbar {
-
-    background-color: white;
-    padding: 1rem;
+    text-align: center;
+    width: 100%;
+    background-color: rgb(61, 55, 60);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,15 +46,12 @@
     
 }
 
-  .nav-wrapper {
-    margin: auto;
-    text-align: center;
-    width: 70%;
-  }
+ 
   
   .logo {
     float: left;
-    margin-right: 1.5rem;
+    margin-right:2.5rem;
+    padding-left: 10px;
     font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
@@ -65,6 +59,7 @@
   } 
   
   #navbar ul {
+    align-self: center;
     display: inline-block;
     float: right;
     list-style: none;
@@ -86,11 +81,10 @@
     color: rgb(182, 41, 64);
     display: block;
     font-size: 0.7em;
-    height: 50px;
     letter-spacing: 1px;
     margin: 0 20px;
     padding: 0 4px;
-    position: relative;
+    /* position: relative; */
     text-decoration: none;
     text-transform: uppercase;
     transition: all 0.5s ease;
@@ -145,74 +139,6 @@
 /* Tablet View */
 
 @media only screen and (max-width: 960px) {
-    /* .navbar  {
-        display: none; 
-
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: #333;
-    }
-.navbutton {
-    width: 100%;
-
- 
-}
-    .navbutton.show {
-        
-        display: flex; 
-    }
-
-    .navbutton li {
-        display: none; 
-        margin: 0;
-        text-align: center;
-    }
-
-    .burger-menu {
-      display: block;
-  }
-
-  #menu {
-      display: none;
-  }
-
-  #menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-#menu.show {
-    display: flex;
-}
-
-#menu li {
-    margin: 0;
-    text-align: center;
-    padding: 10px;
-}
-
-#navbar {
-    flex-direction: column;
-}
-
-    .burger-menu.show ~ #menu {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background-color: #333;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  } */
 
 
 
@@ -222,32 +148,34 @@
   #menu {
     display: none;
     flex-direction: column;
-    position: absolute;
-    top: 60px;
     left: 0;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
     background-color: #333;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* #menu.show {
-    display: flex;
-} */
 
 #menu li {
     margin: 0;
     text-align: center;
     padding: 10px;
+    display: block;
+    border-bottom: 1px solid #333;
+    float: none;
 }
-
+nav {
+  flex-direction: row !important;
+  flex-wrap: wrap;
+}
 #navbar {
     flex-direction: column;
 }
-
-
 .burger-menu .burgermenu {
 display: block !important;
-margin-left: 50rem;
+margin-right: 10px;
 font-size: 1.5em;
 align-self:flex-end;
 cursor: pointer;
@@ -260,16 +188,6 @@ cursor: pointer;
   display: none;
 }
 
-/* .burger-menu.show ~ #menu {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-} */
 
 .hide-navbar {
   display: none;
@@ -277,8 +195,8 @@ cursor: pointer;
 
 }
 
-.show-navbar .navbar {
-  display: block;
+.show {
+  display: block !important;
 }
 /*                   END OF NAVBAR                                                  */
 
