@@ -51,15 +51,15 @@ if (!empty($maintaince)){
 
 
 
-    <nav id="navbar" id="">
-  <div class="nav-wrapper">
+    <nav id="navbar">
+  <div class="nav-wrapper ">
    
     <div class="logo">
       <a href="#home"><img width="100px" height="auto" src="./css/logo1.png"></a>
     </div>
 
  
-    <ul class="navbar" id="menu">
+    <ul class="navbar show  hide-on-small-screen" id="menu" >
     
       <li><a  class="navbutton" href="dashboard.php">Home</a></li>
       <li><a class="navbutton" href="viewallpolls.php">Public Polls</a></li>
@@ -69,20 +69,19 @@ if (!empty($maintaince)){
           echo '<li><a class="navbutton" href="./login.php">Sign In</a></li>
            <li><a class="navbutton" href="./register.php">Register</a></li>';
  
-}else {
-  echo '
-  <li><a class="navbutton" href="./mangepolls.php">manage polls</a></li>
-  <span class"logout">  <li><a class="navbutton" href="./logout.php"><i class="fa-solid  fa-lg fa-arrow-right-from-bracket"  style="--fa-inverse: rgb(95, 16, 29);--fa-li-margin:0px"></i> Logout</a></li> </span>';
-}
+          }else {
+            echo '
+            <li><a class="navbutton" href="./mangepolls.php">manage polls</a></li>
+            <span class"logout">  <li><a class="navbutton" href="./logout.php"><i class="fa-solid  fa-lg fa-arrow-right-from-bracket"  style="--fa-inverse: rgb(95, 16, 29);--fa-li-margin:0px"></i> Logout</a></li> </span>';
+          }
 
       
       ?>
       
-    
-      </a>
     </ul>
+    <div class="burger-menu" onclick="toggleMenu()"><a  class="burgermenu"> <i class="fa fa-bars "></i></a></div>
+          
   </div>
-  <div class="burger-menu"><a  class="burgermenu"> <i class="fa fa-bars "></i></a></div>
   
 
 </div>

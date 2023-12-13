@@ -44,7 +44,10 @@
 }
 
 
-
+.h-100 {
+    height: calc(100vh - 9rem) !important;
+    max-height: 924px;
+}
         .banner {
             font-size: 48px;
             font-weight: bold;

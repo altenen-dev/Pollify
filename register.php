@@ -1,5 +1,3 @@
-
-
 <?php include "init/db.php"; ?>
 
 <?php include "init/init.php"; ?>
@@ -10,19 +8,19 @@
 
 
 
-if (!empty($maintaince)){
+if (!empty($maintaince)) {
 
-    header('Location: maintenance');
+  header('Location: maintenance');
 
-    die('Maintenance'. $maintaince);
+  die('Maintenance' . $maintaince);
 
-  }
+}
 
 if ($user->LoggedIn()) {
 
-    header('Location: dashboard.php');
+  header('Location: dashboard.php');
 
-    exit;
+  exit;
 
 }
 
@@ -38,101 +36,101 @@ if ($user->LoggedIn()) {
 ob_start();
 
 
-if (!empty($maintaince)){
+if (!empty($maintaince)) {
 
-header('Location: maintenance');
+  header('Location: maintenance');
 
-die('Maintenance'. $maintaince);
-
-}
-
-if ($user -> LoggedIn()){
-
-header('Location: dashbaord');
+  die('Maintenance' . $maintaince);
 
 }
 
+if ($user->LoggedIn()) {
 
-
-if(!empty($_POST['signup'])){
-
-$name = $_POST['name'];
-
-$email = $_POST['email'];
-
-$password = $_POST['password'];
-
-$rpassword = $_POST['password2'];
-
-if(empty($name) || empty($email) || empty($password) || empty($rpassword)){
-
-  $error = "please fill all the missing blanks !!";
+  header('Location: dashbaord');
 
 }
 
 
 
+if (!empty($_POST['signup'])) {
 
-//Check if the username is legit
+  $name = $_POST['name'];
 
-if ( strlen($email) < 6 || strlen($email) > 100){
+  $email = $_POST['email'];
 
-  $error = 'email length is not valid !!';
+  $password = $_POST['password'];
 
-}
+  $rpassword = $_POST['password2'];
 
+  if (empty($name) || empty($email) || empty($password) || empty($rpassword)) {
 
+    $error = "please fill all the missing blanks !!";
 
-if ( strlen($name) < 5 || strlen($name) > 32){
-
-    $error = 'name length is not valid !!';
-  
   }
 
 
-//Validate email
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
 
-  $error = 'the email is not valid !!';
+  //Check if the username is legit
 
-}
+  if (strlen($email) < 6 || strlen($email) > 100) {
 
-//Compare first to second password
+    $error = 'email length is not valid !!';
 
-if ($password != $rpassword){
+  }
 
-  $error = 'you entered password or confirm password not correctly !!';
 
-}
 
-//Check if email already exists
+  if (strlen($name) < 5 || strlen($name) > 32) {
 
-$SQL = $db->prepare("SELECT COUNT(*) FROM `users` WHERE `username` = :email");
+    $error = 'name length is not valid !!';
 
-$SQL->execute(array(':email' => $email));
+  }
 
-$EmailCount = $SQL->fetchColumn(0);
 
-if($EmailCount > 0){
+  //Validate email
+
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+    $error = 'the email is not valid !!';
+
+  }
+
+  //Compare first to second password
+
+  if ($password != $rpassword) {
+
+    $error = 'you entered password or confirm password not correctly !!';
+
+  }
+
+  //Check if email already exists
+
+  $SQL = $db->prepare("SELECT COUNT(*) FROM `users` WHERE `username` = :email");
+
+  $SQL->execute(array(':email' => $email));
+
+  $EmailCount = $SQL->fetchColumn(0);
+
+  if ($EmailCount > 0) {
 
     $error = 'the email is already exists !!';
 
-}
+  }
 
-//Make registeration
+  //Make registeration
 
-if(empty($error)){
+  if (empty($error)) {
 
-  $insertUser = $db -> prepare("INSERT INTO `users` VALUES(NULL, :name, :email, :password)");
-$passwordhashed = password_hash($password,PASSWORD_DEFAULT);
-  $insertUser -> execute(array(':name' => $username, ':password' => $passwordhashed, ':email' => $email));
+    $insertUser = $db->prepare("INSERT INTO `users` VALUES(NULL, :name, :email, :password)");
+    $passwordhashed = password_hash($password, PASSWORD_DEFAULT);
+    $insertUser->execute(array(':name' => $username, ':password' => $passwordhashed, ':email' => $email));
 
-  $done = "Your account has been created successfully you can login now!!";
+    $done = "Your account has been created successfully you can login now!!";
 
-  header('refresh: 1; url=login.php');
+    header('refresh: 1; url=login.php');
 
-}
+  }
 
 }
 
@@ -148,141 +146,196 @@ $passwordhashed = password_hash($password,PASSWORD_DEFAULT);
 
 
 
- 
+
 
 <?php
 if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php");
-    exit();
+  header("Location: dashboard.php");
+  exit();
 }
 
 ?>
 
 <head>
-    <meta charset="UTF-8">
-    <title><?php echo htmlspecialchars($sitename); ?> | Register Page</title>
-    <script src="https://kit.fontawesome.com/1b2b1806df.js" crossorigin="anonymous"></script>
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <style>
-        html,body{
-  display: grid;
-  height: 100%;
-  width: 100%;
-  place-items: center;
-  font-family: 'Poppins', sans-serif;
-  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
-}
-.success,  .error {
-			border: 2px solid;
-            border-radius: 5px;
-			margin: 10px 0px;
-			padding: 15px 10px 15px 50px;
-			background-repeat: no-repeat;
-			background-position: 10px center;
-		}
-        .success {
-			color: #4F8A10;
-			background-color: #DFF2BF;
-			background-image: url('./css/svg/check-solid.svg');
-		}
-        	.error{
-			color: #D8000C;
-			background-color: #FFBABA;
-            background-image: url('./css/svg/xmark-solid.svg');
-		
-        }
-        .login-container {
-          display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color:rgba(255, 255, 255, 0.88);
-            margin: 0 auto;
-            max-width: 26rem;
-		width: 90%;
-	
-             border-radius: 15%;
-             border: 2px solid white;
-            font-family: 'Poppins', sans-serif;
+  <meta charset="UTF-8">
+  <title>
+    <?php echo htmlspecialchars($sitename); ?> | Register Page
+  </title>
+  <script src="https://kit.fontawesome.com/1b2b1806df.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    html,
+    body {
+      display: grid;
+      height: 100%;
+      width: 100%;
+      place-items: center;
+      font-family: 'Poppins', sans-serif;
+      background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+    }
 
-        }
-                    input[type=email], input[type=password],  input[type=text] {
-            width: 90%;
-            padding: 12px 20px;
-            margin: 12px 10px;
-            display: inline-block;
-          
-            box-sizing: border-box;
+    .success,
+    .error {
+      border: 2px solid;
+      border-radius: 5px;
+      margin: 10px 0px;
+      padding: 15px 10px 15px 50px;
+      background-repeat: no-repeat;
+      background-position: 10px center;
+    }
+
+    .success {
+      color: #4F8A10;
+      background-color: #DFF2BF;
+      background-image: url('./css/svg/check-solid.svg');
+    }
+
+    .error {
+      color: #D8000C;
+      background-color: #FFBABA;
+      background-image: url('./css/svg/xmark-solid.svg');
+
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.88);
+      margin: 0 auto;
+      max-width: 26rem;
+      width: 90%;
+
+      border-radius: 15%;
+      border: 2px solid white;
+      font-family: 'Poppins', sans-serif;
+
+    }
+
+    input[type=email],
+    input[type=password],
+    input[type=text] {
+      width: 90%;
+      padding: 12px 20px;
+      margin: 12px 10px;
+      display: inline-block;
+
+      box-sizing: border-box;
 
 
-  outline: none;
-  color: #999;
-  border-radius: 5px;
-  border: 2px solid lightgrey;
-  border-bottom-width: 2px;
-  font-size: 17px;
-  transition: all 0.3s ease;
-            }
-            input[type=email], input[type=password],  input[type=text]:focus::placeholder{
-             color: #b3b3b3;
-}
-input[type=email], input[type=password]::placeholder{
-  color: #999;
-  transition: all 0.3s ease;
-}
- 
+      outline: none;
+      color: #999;
+      border-radius: 5px;
+      border: 2px solid lightgrey;
+      border-bottom-width: 2px;
+      font-size: 17px;
+      transition: all 0.3s ease;
+    }
 
-        form {
-            max-width: 30rem;
-        }
-        .login-container > form:nth-child(2) > a:nth-child(12){
-          padding:0 5rem;
-          margin:0 auto;
-        }
-        button {
-            background: -webkit-linear-gradient(left, #a445b2, #fa4299);
-            border-radius: 5px;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1.2rem;
-            }
+    input[type=email],
+    input[type=password],
+    input[type=text]:focus::placeholder {
+      color: #b3b3b3;
+    }
 
-            button:hover {
-            opacity: 0.8;
-            }
-    </style>
+    input[type=email],
+    input[type=password]::placeholder {
+      color: #999;
+      transition: all 0.3s ease;
+    }
+
+
+    form {
+      max-width: 30rem;
+    }
+
+    .login-container>form:nth-child(2)>a:nth-child(12) {
+      padding: 0 5rem;
+      margin: 0 auto;
+    }
+
+    button {
+      background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+      border-radius: 5px;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1.2rem;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
 </head>
+
 <body>
 
-    <div class="login-container">
-        <h2>Signup</h2>
-        <?php if (isset($error)) : ?>
-            <p class="error"><?php echo $error; ?></p>
-        <?php endif; ?>
-        <?php if (isset($done)) : ?>
-            <p class="success"><?php echo $success; ?></p>
-        <?php endif; ?>
-        <form method="POST" action="">
-        <input type="text" id="name" name="name" placeholder="Full name" required>
-            <br>
-            <input type="email" id="email" name="email" placeholder="Email Address" required>
-            <br>
+  <div class="login-container">
+    <h2>Signup</h2>
+    <?php if (isset($error)): ?>
+      <p class="error">
+        <?php echo $error; ?>
+      </p>
+    <?php endif; ?>
+    <?php if (isset($done)): ?>
+      <p class="success">
+        <?php echo $success; ?>
+      </p>
+    <?php endif; ?>
+    <form method="POST" action="">
+      <input type="text" id="name" name="name" placeholder="Full name" required>
+      <br>
+      <input type="email" id="email" onkeyup="validate_email(this.value)" name="email" placeholder="Email Address"
+        required>
+        <p id="msg"  ></p>
+      <br>
 
-            <input type="password" id="password" name="password" placeholder="Password"  required>
-            <br>
-            <input type="password" id="password2" name="password2" placeholder="Confirm Password"  required>
-            <br>
-            <button type="submit" name="signup" value="Sign up">Signup</button>
-            <br>
-            <p>You have an account? <a href="login.php">Login here</a></p>
-            <a  href="index.php">back to homepage <i class="fa-solid fa-house fa-lg" style="color: #000040;"></i></a>
-        </form>
-    </div>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <br>
+      <input type="password" id="password2" name="password2" placeholder="Confirm Password" required>
+      <br>
+      <button type="submit" name="signup" value="Sign up">Signup</button>
+      <br>
+      <p>You have an account? <a href="login.php">Login here</a></p>
+      <a href="index.php">back to homepage <i class="fa-solid fa-house fa-lg" style="color: #000040;"></i></a>
+    </form>
+  </div>
+
+
+  <script>
+    function validate_email(email) {
+      if (email == "") {
+        document.getElementById("email").innerHTML = "";
+        return;
+      }
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function(){
+        document.getElementById("msg").innerHTML =this.responseText;
+        if (this.responseText.includes("email is taken") ){
+                document.getElementById("msg").style.color = "red";
+               
+              }else if (this.responseText.includes("email is available")) {
+                document.getElementById("msg").style.color = "green";  
+       
+      }
+
+    }
+
+
+      xhttp.open("GET", "vemail.php?q=" + email);
+     
+      xhttp.send();
+
+    }
+ 
+  </script>
 </body>
+
 </html>

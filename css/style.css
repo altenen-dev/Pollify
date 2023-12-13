@@ -8,36 +8,45 @@
       }
       
       body {
-        background: rgb(250, 250, 250) url(http://lorempixel.com/1920/1080/nature/);
+        background: rgb(250, 250, 250);
         font-family: 'Poppins', sans-serif;
       }
 
 /*======================================================
                           Navbar
   ======================================================*/
+
+  #menu {
+    width: 100%;
+  gap: 0.25rem;
+  padding: 0.25em 0;
+  list-style: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  }
   #navbar {
-    background: white;
+
+    background-color: white;
+    padding: 1rem;
     display: flex;
-    color: rgb(13, 26, 38);
-    position: fixed;
-    top: 0;
-    height: 60px;
-    line-height: 60px;
-    width: 100vw;
-    z-index: 10;
-    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
   } 
  
 
 .burgermenu {
     font-size: 1.5em;
     cursor: pointer;
-    display: none; /* Initially hide on larger screens */
+    display: none;
 }
 
 .navbutton {
     list-style: none;
     display: flex;
+    
 }
 
   .nav-wrapper {
@@ -48,9 +57,10 @@
   
   .logo {
     float: left;
-    margin-left: 15px;
-    font-size: 1.5em;
-    height: 30px;
+    margin-right: 1.5rem;
+    font-size: 1.25rem;
+  text-decoration: none;
+  white-space: nowrap;
     letter-spacing: 1px;
   } 
   
@@ -62,10 +72,14 @@
     text-align: right;
     transition: transform 0.5s ease-out;
     -webkit-transition: transform 0.5s ease-out;
+
+
+    
   } 
   
   #navbar li {
     display: inline-block;
+    margin-right: 15px;
   }
   
   #navbar li a {
@@ -122,16 +136,16 @@
     width: 100%;
     
   }
-  .mob-wrapper {
-    display: none;
-}
+  #navbar {
+    height: 60px;
+  }
 
 
 
 /* Tablet View */
 
-@media only screen and (max-width: 768px) {
-    .navbar  {
+@media only screen and (max-width: 960px) {
+    /* .navbar  {
         display: none; 
 
         position: absolute;
@@ -147,7 +161,7 @@
 }
     .navbutton.show {
         
-        display: flex; /* Show navigation links when burger menu is clicked */
+        display: flex; 
     }
 
     .navbutton li {
@@ -156,11 +170,117 @@
         text-align: center;
     }
 
-    .burgermenu {
-        display: block; /* Show burger menu on smaller screens */
-    }
+    .burger-menu {
+      display: block;
+  }
+
+  #menu {
+      display: none;
+  }
+
+  #menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+#menu.show {
+    display: flex;
+}
+
+#menu li {
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+#navbar {
+    flex-direction: column;
+}
+
+    .burger-menu.show ~ #menu {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  } */
+
+
+
+  .hide-on-small-screen {
+    display: none !important;
+  }
+  #menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* #menu.show {
+    display: flex;
+} */
+
+#menu li {
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+#navbar {
+    flex-direction: column;
+}
+
+
+.burger-menu .burgermenu {
+display: block !important;
+margin-left: 50rem;
+font-size: 1.5em;
+align-self:flex-end;
+cursor: pointer;
+}
+
+
+
+
+#menu {
+  display: none;
+}
+
+/* .burger-menu.show ~ #menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+} */
+
+.hide-navbar {
+  display: none;
+}
+
+}
+
+.show-navbar .navbar {
+  display: block;
+}
+/*                   END OF NAVBAR                                                  */
 
 
 

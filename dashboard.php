@@ -12,7 +12,7 @@ include "./init/header.php";
         <div class="poll-container">
             <?php 
             
-            $sqlgetpoll = $db -> query("SELECT * FROM `polls` WHERE status='true'");
+            $sqlgetpoll = $db -> query("SELECT * FROM `polls` WHERE status='true' LIMIT 3");
           
 								while ($getInfo = $sqlgetpoll -> fetch(PDO::FETCH_ASSOC)){
                                     $question = $getInfo['question'];
