@@ -34,18 +34,11 @@ if (!empty($maintaince)){
 
 
 
-if (!$user -> LoggedIn() ){
-
- header('location: login.php');
-
-}
 
 
 
- ?>
 
-
-
+?>
 
     <body >
 

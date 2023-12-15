@@ -51,13 +51,15 @@
         .banner {
             font-size: 48px;
             font-weight: bold;
-            color: white;
-         
+            color: var(--section-color);
             width: 100%;
             align-content:center;
-            background-color: #333;
+            background-color: var(--main-color);
             padding-top: 150px;
             text-align: center;
+            left: 50%;
+            top: 50%;
+            max-width: 100%;
         }
 
         /* Make the banner responsive on devices with a maximum width of 600px */

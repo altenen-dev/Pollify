@@ -1,5 +1,13 @@
 
-
+/* Start Variables */
+:root {
+  --main-color: #e93e58;
+  --secondary-color: #ed9168;
+  --third-color:#058081;
+  --section-padding: 60px;
+  --section-background: #f6f6f6;
+}
+/* End Variables */
      * {
         border: 0;
         box-sizing: border-box;
@@ -25,7 +33,8 @@
   #navbar {
     text-align: center;
     width: 100%;
-    background-color: rgb(61, 55, 60);
+    height: 100%;
+    background-color:  var(--main-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,6 +52,7 @@
 .navbutton {
     list-style: none;
     display: flex;
+
     
 }
 
@@ -56,6 +66,7 @@
   text-decoration: none;
   white-space: nowrap;
     letter-spacing: 1px;
+   
   } 
   
   #navbar ul {
@@ -77,14 +88,13 @@
     margin-right: 15px;
   }
   
-  #navbar li a {
-    color: rgb(182, 41, 64);
+  #menu li a {
+    color:var(--section-background) !important;
     display: block;
     font-size: 0.7em;
     letter-spacing: 1px;
     margin: 0 20px;
     padding: 0 4px;
-    /* position: relative; */
     text-decoration: none;
     text-transform: uppercase;
     transition: all 0.5s ease;
@@ -93,45 +103,44 @@
   }
 
   
-  #navbar li a:hover {
-    color: rgb(95, 16, 29);
+  #menu li a:hover {
+    color: var( --main-color);
     transition: all 1s ease;
     -webkit-transition: all 1s ease;
   }
 
-  #navbar li a:before, #navbar li a:after {
+  #menu li a:before,   #menu li a:after {
     content: '';
     position: absolute;
     width: 0%;
     height: 1px;
     bottom: -1px;
-    background: rgb(13, 26, 38);
+    background: var( --main-color);
   }
-  
-  #navbar li a:before {
+
+  #menu li a:before {
     left: 0;
     transition: 0.5s;
   }
   
-  #navbar li a:after {
-    background: rgb(13, 26, 38);
+  #menu li a:after {
+    background: var( --main-color);
     right: 0;
  
   }
-  
-  #navbar li a:hover:before {
-    background: rgb(13, 26, 38);
+  #menu li a:hover:before {
+    background: var( --main-color);
     width: 100%;
     
   }
   
-  #navbar li a:hover:after {
+  #menu li a:hover:after {
     background: transparent;
     width: 100%;
     
   }
   #navbar {
-    height: 60px;
+    height: auto;
   }
 
 
@@ -153,7 +162,7 @@
     margin: 0;
     padding: 0;
     position: relative;
-    background-color: #333;
+    background-color:  var(--main-color);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -317,4 +326,112 @@ cursor: pointer;
 
 .poll-vote:hover {
   background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.success-icon {
+  display: inline-block;
+  width: 8em;
+  height: 8em;
+  font-size: 20px;
+  border-radius: 50%;
+  border: 4px solid #4cc93f;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  transform-origin: center;
+  animation: showSuccess 180ms ease-in-out;
+  transform: scale(1);
+}
+
+  .tip,.long {
+    display: block;
+    position: absolute;
+    height: 4px;
+    background-color: #4cc93f;
+    border-radius: 10px;
+  }
+
+  .tip {
+    width: 2.4em;
+    top: 4.3em;
+    left: 1.4em;
+    transform: rotate(45deg);
+    animation: tipInPlace 300ms ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: 180ms;
+    visibility: hidden;
+  }
+
+  .long {
+    width: 4em;
+    transform: rotate(-45deg);
+    top: 3.70em;
+    left: 2.75em;
+    animation: longInPlace 140ms ease-in-out;
+    animation-fill-mode: forwards;
+    visibility: hidden;
+    animation-delay: 300ms + 140ms;
+  }
+
+@keyframes showSuccess {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes tipInPlace {
+    from {
+        width: 0em;
+        top: 0em;
+        left: -1.6em;
+    }
+    to {
+        width: 2.4em;
+        top: 4.3em;
+        left: 1.4em;
+        visibility: visible;
+    }
+}
+
+@keyframes longInPlace {
+    from {
+        width: 0em;
+        top: 5.1em;
+        left: 3.2em;
+    }
+    to {
+        width: 4em;
+        top: 3.70em;
+        left: 2.75em;
+        visibility: visible;
+    }
+}
+
+
+.footer {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 30px 10px;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 18px;
 }

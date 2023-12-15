@@ -1,61 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Poll Question</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
+<?php
+include "./init/header.php"
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+?>
 
-        h2 {
-            text-align: center;
-        }
+<style>
+    .container h2 {
+      margin: 0;
+      padding: 25px 0;
+      font-size: 22px;
+      border-bottom: 1px solid #ebebeb;
+      color: #666666;
+}
 
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
+.deletepoll .choices {
+      display: flex;
+}
+.deletepoll .choices a {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #38b673;
+      font-weight: bold;
+      color: #FFFFFF;
+      padding: 10px 15px;
+      margin: 15px 10px 15px 0;
+      border-radius: 5px;
+}
+.deletepoll .choices a:hover {
+      background-color: #32a367;
+    }
+    
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Delete Poll Question</h2>
-        <form action="deletepoll.php" method="post">
-            <label for="questionId">Question ID:</label>
-            <input type="text" name="questionId" required>
+<?php 
 
-            <button type="submit">Delete Question</button>
-        </form>
+if (isset($_GET['q'])) {
+    $stmt = $db->prepare('SELECT * FROM polls WHERE qid = ?');
+    $stmt->execute([ $_GET['q'] ]);
+    $poll = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$poll) {
+        exit('Poll doesn\'t exist!!');
+    }
+ 
+    if (isset($_GET['choice'])) {
+        if ($_GET['choice'] == 'yes') {
+            $stmt = $db->prepare('DELETE FROM polls WHERE qid = ?');
+            $stmt->execute([ $_GET['q'] ]);
+            $stmt = $db->prepare('DELETE FROM choices WHERE qid = ?');
+            $stmt->execute([ $_GET['q'] ]);
+            $msg = 'You have deleted the poll!';
+        } else {
+            header('Location: dashboard.php');
+            exit;
+        }
+    }
+} else {
+    exit('Error No Poll Specified!!!');
+}
+?>
+<div class="container deletepoll">
+	<h2>Delete Poll :<?=$poll['question']?></h2>
+    <?php if (isset($msg)): ?>
+    <p><?=$msg?></p>
+    <div class="success-icon">
+    <div class="success-icon tip"></div>
+    <div class="success-icon long"></div>
+  </div>
+    <?php else: ?>
+	<p>Are you sure you want to delete poll <?=$poll['question']?>?</p>
+    <div class="choices">
+        <a href="deletepoll.php?q=<?=$poll['qid']?>&choice=yes">Yes</a>
+        <a href="deletepoll.php?q=<?=$poll['qid']?>&choice=no">No</a>
     </div>
-</body>
-</html>
+    <?php endif; ?>
+</div>
+
+<?php
+include "./init/footer.php"
+
+?>

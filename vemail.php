@@ -1,7 +1,7 @@
 <?php 
 include './init/db.php';
 
-// if ($_REQUEST["REQUEST_METHOD"] == "GET"){
+if ($_SERVER["REQUEST_METHOD"] == "GET"){
 
     $Email = $_GET['q'];
 
@@ -16,7 +16,7 @@ if($result = $res->fetch()){
 }
 $db= null;
 
-// }
+}
 
 
 

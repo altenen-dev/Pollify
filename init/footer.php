@@ -2,17 +2,13 @@
 
                 <footer class="footer">
 
-                    <div class="container">
+                  
 
-                        <div class="row">
-
-                           My Poll 
                           
+                           &copy; 2023 <span> My Poll </span> All Right Reserved
 
-                        </div>
 
-                    </div>
-
+                 
                 </footer>
 
             </div>

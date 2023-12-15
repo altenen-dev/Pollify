@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<?php 
+
+include "./init/header.php";
+
+?>
+
+
     <form>
         Question <textarea name="" name="q" col="30" rows="3"></textarea><br>
         <span id="msg" style="color:red"></span>
@@ -29,5 +28,5 @@ function addMoreOp() {
   }
 }
     </script>
-</body>
-</html>
+
+<?php include './init/footer.php'; ?>

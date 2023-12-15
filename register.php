@@ -81,7 +81,7 @@ if (!empty($_POST['signup'])) {
 
 
 
-  if (strlen($name) < 5 || strlen($name) > 32) {
+  if (strlen($name) < 3 || strlen($name) > 32) {
 
     $error = 'name length is not valid !!';
 
@@ -159,8 +159,7 @@ if (isset($_SESSION['user_id'])) {
 <head>
   <meta charset="UTF-8">
   <title>
-    <?php echo htmlspecialchars($sitename); ?> | Register Page
-  </title>
+    <?php echo htmlspecialchars($sitename); ?> | Register Page</title>
   <script src="https://kit.fontawesome.com/1b2b1806df.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -173,7 +172,8 @@ if (isset($_SESSION['user_id'])) {
       width: 100%;
       place-items: center;
       font-family: 'Poppins', sans-serif;
-      background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+      background: rgb(233,62,88);
+background: linear-gradient(248deg, rgba(233,62,88,1) 18%, rgba(141,87,64,1) 49%, rgba(5,128,129,1) 79%); 
     }
 
     .success,
@@ -256,9 +256,36 @@ if (isset($_SESSION['user_id'])) {
       padding: 0 5rem;
       margin: 0 auto;
     }
+    .link {
+     margin: 0 auto;
+	position: relative;
+	transition: color .3s ease-in-out;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		height: 3px;
+		background-color: #D65472;
+		transform: scaleX(0);
+		transition: transform .3s ease-in-out;
+	}
+	
+	&:hover {
+		color: #D65472;
+	}
+	
+	&:hover::before {
+		transform: scaleX(1);
+	}	
+}
+
+a {
+	text-decoration: none;}
 
     button {
-      background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+      background: #058081;
       border-radius: 5px;
       color: white;
       padding: 14px 20px;
@@ -278,23 +305,23 @@ if (isset($_SESSION['user_id'])) {
 <body>
 
   <div class="login-container">
-    <h2>Signup</h2>
-    <?php if (isset($error)): ?>
+    <h2 style="margin-top:7px;">Signup Form</h2>
+    <?php if (isset($error)){?>
       <p class="error">
         <?php echo $error; ?>
       </p>
-    <?php endif; ?>
-    <?php if (isset($done)): ?>
+    <?php } ?>
+    <?php if (isset($done)){  ?>
       <p class="success">
-        <?php echo $success; ?>
+        <?php echo $done; ?>
       </p>
-    <?php endif; ?>
+    <?php sleep(3); } ?>
     <form method="POST" action="">
       <input type="text" id="name" name="name" placeholder="Full name" required>
       <br>
       <input type="email" id="email" onkeyup="validate_email(this.value)" name="email" placeholder="Email Address"
         required>
-        <p id="msg"  ></p>
+        <p id="msg"></p>
       <br>
 
       <input type="password" id="password" name="password" placeholder="Password" required>
@@ -303,16 +330,23 @@ if (isset($_SESSION['user_id'])) {
       <br>
       <button type="submit" name="signup" value="Sign up">Signup</button>
       <br>
-      <p>You have an account? <a href="login.php">Login here</a></p>
-      <a href="index.php">back to homepage <i class="fa-solid fa-house fa-lg" style="color: #000040;"></i></a>
+      <p>You have an account? <a  class="link" href="login.php">Login here</a></p>
+      <a  class="link" href="index.php">back to homepage <i class="fa-solid fa-house fa-lg" style="color: #000040;"></i></a>
     </form>
   </div>
 
 
   <script>
     function validate_email(email) {
-      if (email == "") {
+      if (email == "" ) {
         document.getElementById("email").innerHTML = "";
+        document.getElementById("msg").innerHTML ="";
+        return;
+      }
+      let c =email.length;
+      if (email != "" && c <= 6) {
+        document.getElementById("email").innerHTML = "";
+        document.getElementById("msg").innerHTML ="";
         return;
       }
       const xhttp = new XMLHttpRequest();
@@ -320,6 +354,7 @@ if (isset($_SESSION['user_id'])) {
         document.getElementById("msg").innerHTML =this.responseText;
         if (this.responseText.includes("email is taken") ){
                 document.getElementById("msg").style.color = "red";
+                document.getElementById("email").style.borderBottom = "2px solid red";
                
               }else if (this.responseText.includes("email is available")) {
                 document.getElementById("msg").style.color = "green";  
