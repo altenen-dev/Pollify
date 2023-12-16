@@ -34,12 +34,16 @@ include "./init/header.php"
 <?php 
 
 if (isset($_GET['q'])) {
+   
     $stmt = $db->prepare('SELECT * FROM polls WHERE qid = ?');
     $stmt->execute([ $_GET['q'] ]);
     $poll = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$poll) {
         exit('Poll doesn\'t exist!!');
     }
+    if($_SESSION['user_id'] == $poll['uid'] ){
+
+  
  
     if (isset($_GET['choice'])) {
         if ($_GET['choice'] == 'yes') {
@@ -53,6 +57,9 @@ if (isset($_GET['q'])) {
             exit;
         }
     }
+}else {
+    exit('Error You are no authorized to delete this poll!!');
+}
 } else {
     exit('Error No Poll Specified!!!');
 }
@@ -66,7 +73,7 @@ if (isset($_GET['q'])) {
     <div class="success-icon long"></div>
   </div>
     <?php else: ?>
-	<p>Are you sure you want to delete poll <?=$poll['question']?>?</p>
+	<p>Are you sure you want to delete poll <?=$poll['question']?></p>
     <div class="choices">
         <a href="deletepoll.php?q=<?=$poll['qid']?>&choice=yes">Yes</a>
         <a href="deletepoll.php?q=<?=$poll['qid']?>&choice=no">No</a>

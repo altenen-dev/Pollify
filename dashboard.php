@@ -8,44 +8,49 @@ include "./init/header.php";
 
 <div class="container">
 
-            <h1>Poll Maker</h1>
-        <div class="poll-container">
+            <main>
+<br>
+    <h1 class="title"> Public Polls:</h1>
+    <div class="card-container">
+    <div class="poll-container">
+   
+
             <?php 
             
-            $sqlgetpoll = $db -> query("SELECT * FROM `polls` WHERE status='true' LIMIT 3");
-          
-								while ($getInfo = $sqlgetpoll -> fetch(PDO::FETCH_ASSOC)){
+            $sqlgetpoll = $db -> query("SELECT * FROM `polls` WHERE status='1' LIMIT 6");
+            $totalvotes = 0;
+								while ($getInfo = $sqlgetpoll -> fetch()){
                                     $question = $getInfo['question'];
                                     $qid =$getInfo['qid'];
                                 
-
+                         
                                 $sqlgetresult = $db -> prepare("SELECT * FROM `choices` WHERE qid= ?");
-                                $sqlgetresult -> bind_param(1, $id);
+                                $sqlgetresult -> bindValue(1, $qid);
                                 $sqlgetresult -> execute();
             ?>
-            <div class="poll">
-                <h2>  <?php echo htmlspecialchars($row['poll_title']); ?> </h2>
-                <p>Poll Description</p>
-                <div class="poll-options">
-                    <?php 
-                     while($sqlgetresult -> FETCH_ASSOC()) {
-                        $choice = $sqlgetresult['choice'];
-                        $chid = $sqlgetresult['chid'];
-                    echo '<input type="radio" name="options" value="'. $chid.'" class="space">'. htmlspecialchars($choice) . '<br>';
-                }
-
-                    ?>
-                            <input type="submit" value="Vote" name="vote" class="vote">
-                            <button onclick="loadResults(<?php echo $qid; ?>)">Results</button>
-                </div>
+            <!-- <form action="vote.php" method="post"> -->
+            <div class="card">
+            <div class="card-content">
+                <h2>  <?php echo htmlspecialchars($question); ?> </h2>
+                <a href="./vote.php?id=<?php echo $qid; ?>" ><button  class="btn">More details</button></a>
+                <button href="" class="">view results</button>
                 <div id="results">
 
                 </div>
+                </div>
+                </div>
             </div>
-
+            <!-- </form> -->
             <?php } ?>
             <!-- Add more poll elements as needed -->
         </div>
+  
+
+
+    </div>
+
+        
+    </main>
 
 </div>
 

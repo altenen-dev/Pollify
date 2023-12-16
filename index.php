@@ -18,13 +18,13 @@ include "./init/header2.php"
 
             <?php 
             
-            $sqlgetpoll = $db -> query("SELECT * FROM `polls` WHERE status='1' LIMIT 3");
-          
+            $sqlgetpoll = $db -> query("SELECT * FROM `polls` WHERE status='1' LIMIT 6");
+            $totalvotes = 0;
 								while ($getInfo = $sqlgetpoll -> fetch()){
                                     $question = $getInfo['question'];
                                     $qid =$getInfo['qid'];
                                 
-
+                         
                                 $sqlgetresult = $db -> prepare("SELECT * FROM `choices` WHERE qid= ?");
                                 $sqlgetresult -> bindValue(1, $qid);
                                 $sqlgetresult -> execute();
@@ -39,6 +39,7 @@ include "./init/header2.php"
                 <div class="poll-options">
                     <?php 
                      while($result = $sqlgetresult->fetch(PDO::FETCH_ASSOC)) {
+                    
                         $choice = $result['choice'];
                         $chid = $result['chid'];
                     echo '<input type="radio" name="options" value="'. $chid.'" class="space">'. htmlspecialchars($choice) . '<br>';

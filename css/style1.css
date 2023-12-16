@@ -3,7 +3,7 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 120px;
+  
 }
 .card {
     width: 325px;
@@ -27,7 +27,7 @@
     .card-content .btn{
         color: azure;
     display: inline-block;
-    padding: 8px 16px;
+    padding: 10px 20px;
     background-color: #333;
     text-decoration: none;
     border-radius: 4px;
@@ -70,3 +70,6 @@
             }
         }
     
+
+
+        

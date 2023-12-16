@@ -5,6 +5,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <script src="https://kit.fontawesome.com/1b2b1806df.js" crossorigin="anonymous"></script>
+   <script type=”text/javascript” src=”http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js”></script>
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <!-- <script  type="text/javascript" src="assets/js/ajax.js"></script> -->
 
@@ -55,7 +56,7 @@ if (!$user -> LoggedIn() ){
   <!-- <div class="nav-wrapper "> -->
    
     <div class="logo">
-      <a href="#home"><img width="100px" height="auto" src="./css/logo11.png"></a>
+      <a href="./dashboard.php"><img width="100px" height="auto" src="./css/logo11.png"></a>
     </div>
 
     <div class="toggle burger-menu"><a  class="burgermenu"> <i class="fa fa-bars "></i></a></div>
