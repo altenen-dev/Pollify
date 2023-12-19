@@ -44,7 +44,7 @@ include "./init/header.php";
                 }
                 ?>
                <td class="actions">
-                <a href="vote.php?q=<?php echo $getpolls["qid"];?>" class="view" title="View Poll"><i class="fas fa-eye fa-l"></i></a>
+                <a href="vote.php?id=<?php echo $getpolls["qid"];?>" class="view" title="View Poll"><i class="fas fa-eye fa-l"></i></a>
                 <a href="deletepoll.php?q=<?php echo $getpolls["qid"]?>" class="delete-p" title="Delete Poll"><i class="fas fa-trash fa-l"></i></a>
             </td></tr>
             <?php

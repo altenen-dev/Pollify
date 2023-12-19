@@ -211,6 +211,10 @@ cursor: pointer;
 font-size: 13px !important;
 }
 
+.h-100 {
+  height: calc(100vh - 12rem) !important;
+  max-height: 924px;
+}
 }
 
 .show {

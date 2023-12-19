@@ -6,6 +6,7 @@
   
 }
 .card {
+    flex-wrap: wrap;
     width: 325px;
     background-color: aliceblue;
     border-radius: 8px;
@@ -34,13 +35,14 @@
     margin-top: 16px;
 }
 .title {
-    border: 3px solid #333;
-    height: 40px;
-    margin-top: 100px;
-    display: inline;
-    margin-left: 8%;
-    width: 30%;
-    border-radius: 5px;
+    border: 2px solid #333;
+   
+    margin-top: 20px;
+    display: inline-block;
+    /* margin-left: 2%; */
+    /* width: 19%; */
+    margin-bottom: 1em;
+    border-radius: 4px;
 }
 
 
@@ -66,7 +68,12 @@
         @media screen and (max-width: 600px) {
             .banner {
                 font-size: 24px;
-                padding-top: 150px;
+  
+            }
+
+            .h-100 {
+                height: calc(100vh - 4rem) !important;
+                max-height: 924px;
             }
         }
     

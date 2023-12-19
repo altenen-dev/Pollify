@@ -11,9 +11,9 @@ include "./init/header2.php"
 
     <main>
 <br>
-    <h1 class="title"> Public Polls:</h1>
+    <h1 class="title" style="margin-left:20%;margin-top:4px;"> Public Polls:</h1>
     <div class="card-container">
-    <div class="poll-container">
+   
    
 
             <?php 
@@ -29,33 +29,21 @@ include "./init/header2.php"
                                 $sqlgetresult -> bindValue(1, $qid);
                                 $sqlgetresult -> execute();
             ?>
-            <form action="votepoll.php" method="post">
+             <div class="poll-container">
+            <!-- <form action="vote.php" method="post"> -->
             <div class="card">
             <div class="card-content">
                 <h2>  <?php echo htmlspecialchars($question); ?> </h2>
-                <!-- <a href="" class="btn">More details</a>
-              -->
-                <p>Poll Description</p>
-                <div class="poll-options">
-                    <?php 
-                     while($result = $sqlgetresult->fetch(PDO::FETCH_ASSOC)) {
-                    
-                        $choice = $result['choice'];
-                        $chid = $result['chid'];
-                    echo '<input type="radio" name="options" value="'. $chid.'" class="space">'. htmlspecialchars($choice) . '<br>';
-                }
-
-                    ?>
-                            <input type="submit" value="Vote" name="vote" class="vote">
-                            <button onclick="loadResults(<?php echo $qid; ?>)">Results</button>
-                </div>
+                <a href="./vote.php?id=<?php echo $qid; ?>" ><button  class="btn">Vote</button></a>
+                <button href="" class="">view results</button>
                 <div id="results">
 
                 </div>
                 </div>
                 </div>
+                
             </div>
-            </form>
+            <!-- </form> -->
             <?php } ?>
             <!-- Add more poll elements as needed -->
         </div>
