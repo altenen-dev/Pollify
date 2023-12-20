@@ -3,6 +3,60 @@
 include "./init/header.php";
 
 ?>
+<?php
+
+include "./init/header.php";
+
+?>
+
+<?php
+
+$db = new PDO('mysql:host=localhost;dbname=pollmaker;charset=utf8', 'root', '');
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $question = $_POST["question"];
+    $options = $_POST["op"];
+    $endDate = $_POST["enddate"];
+    $status = (strtotime($endDate) >= strtotime(date("Y-m-d"))) ? 1 : 0;
+    $creationDate = date("Y-m-d");
+
+    try {
+        $db->beginTransaction();
+
+        $signedInUserId = $_SESSION["user_id"];
+
+        $insertPollQuery = "INSERT INTO polls (uid, question, status, qdate, edate)
+                            VALUES (:uid, :question, :status, :qdate, :endDate)";
+        $stmt = $db->prepare($insertPollQuery);
+        $stmt->bindParam(':uid', $signedInUserId);
+        $stmt->bindParam(':question', $question);
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':qdate', $creationDate);
+        $stmt->bindParam(':endDate', $endDate);
+        $stmt->execute();
+
+        $questionId = $db->lastInsertId();
+
+        $insertOptionQuery = "INSERT INTO choices (qid, choice) VALUES (:questionId, :option)";
+        $stmt = $db->prepare($insertOptionQuery);
+        $stmt->bindParam(':questionId', $questionId);
+        $stmt->bindParam(':option', $option);
+
+        foreach ($options as $option) {
+            $stmt->execute();
+        }
+
+        $db->commit();
+        echo "Poll created successfully!";
+    } catch (PDOException $e) {
+        $db->rollBack();
+        echo "Error creating poll: " . $e->getMessage();
+    }
+}
+
+?>
+
 <style>
   #form-c {
     display: flex;
