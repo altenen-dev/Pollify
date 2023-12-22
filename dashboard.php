@@ -8,8 +8,9 @@ include "./init/header.php";
 
 <div class="container">
 
-            <main>
-<br>
+<main>
+
+    <br>
     <h1 class="title"> Public Polls:</h1>
     <div class="card-container">
     <div class="poll-container">
@@ -24,25 +25,32 @@ include "./init/header.php";
                                     $qid =$getInfo['qid'];
                                 
                          
-                                $sqlgetresult = $db -> prepare("SELECT * FROM `choices` WHERE qid= ?");
-                                $sqlgetresult -> bindValue(1, $qid);
-                                $sqlgetresult -> execute();
+                                // $sqlgetresult = $db -> prepare("SELECT * FROM `choices` WHERE qid= ?");
+                                // $sqlgetresult -> bindValue(1, $qid);
+                                // $sqlgetresult -> execute();
             ?>
-            <!-- <form action="vote.php" method="post"> -->
-            <div class="card">
-            <div class="card-content">
-                <h2>  <?php echo htmlspecialchars($question); ?> </h2>
-                <a href="./vote.php?id=<?php echo $qid; ?>" ><button  class="btn">More details</button></a>
-                <button href="" class="">view results</button>
-                <div id="results">
 
-                </div>
-                </div>
-                </div>
-            </div>
-            <!-- </form> -->
+                                    <div class="card">
+                                    <div class="card-content">
+                                        <h2>  <?php echo htmlspecialchars($question); ?> </h2>
+                                        <a href="./vote.php?id=<?php echo $qid; ?>" ><button  class="btn">More details</button></a>
+                                        <button href="" class="">view results</button>
+                                        <div id="results">
+
+                                        </div>
+
+
+                                    </div>
+
+                                      </div>
+
+
+        
             <?php } ?>
-            <!-- Add more poll elements as needed -->
+          
+
+
+
         </div>
   
 

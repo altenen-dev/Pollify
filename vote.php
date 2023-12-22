@@ -70,9 +70,16 @@ if (isset($_GET['id'])){
                                 $status = $getInfo['status']; 
                                 $currentDate = new DateTime();
                                 $expiryDateTime = new DateTime($getInfo['edate']);
-                                if ($status == 0 || $currentDate >= $expiryDateTime ){
-                                    die("the poll is expired or deactivated");
+                                if(! $expiryDateTime == '0000-00-00'){
+                                    if ($status == 0 || $currentDate >= $expiryDateTime ){
+                                        die("the poll is expired or deactivated");
+                                    }
+                                }else {
+                                    if ($status == 0  ){
+                                        die("the poll is expired or deactivated");
+                                    }
                                 }
+                                
                          
                                 $sqlgetresult = $db -> prepare("SELECT * FROM `choices` WHERE qid= ?");
                                 $sqlgetresult -> bindValue(1, $qid);

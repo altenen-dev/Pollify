@@ -31,7 +31,7 @@
   list-style: none;
   }
   #navbar {
-    text-align: center;
+    text-align: right;
     width: 100%;
     height: 100%;
     background-color:  var(--main-color);
@@ -72,7 +72,7 @@
   .navbar ul {
     align-self: center;
     display: inline-block;
-    float: right;
+    
     list-style: none;
     margin-top: -2px;
     text-align: right;
@@ -215,7 +215,13 @@ font-size: 13px !important;
   height: calc(100vh - 12rem) !important;
   max-height: 924px;
 }
-}
+
+.poll-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-direction: column;
+}}
 
 .show {
   display: block !important;
@@ -239,7 +245,7 @@ font-size: 13px !important;
     .poll-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 10px;
     }
     
     .poll {
@@ -327,19 +333,17 @@ font-size: 13px !important;
 }
 
 .poll-vote {
-  background-color: #007bff;
+  background-color: #ebeef1;
   border: none;
   border-radius: 3px;
-  color: #fff;
+  color: #333;
   cursor: pointer;
   padding: 0.5rem 1rem;
   text-decoration: none;
   transition: background-color 0.2s;
 }
 
-.poll-vote:hover {
-  background-color: #0056b3;
-}
+
 
 
 
@@ -517,10 +521,10 @@ font-size: 13px !important;
   background-color: #a33131;
 }
  .mpoll tbody tr td.actions .edit {
-  background-color: #37afb7;
+  background-color: rgb(169, 196, 15);
 }
  .mpoll tbody tr td.actions .edit:hover {
-  background-color: #319ca3;
+  background-color: rgb(122, 137, 36);
 }
  .mpoll tbody tr td.actions .view {
   background-color: #37b770;
@@ -554,7 +558,34 @@ font-size: 13px !important;
 }
 
 
+.pagination {
+  display: inline-block;
+  text-align: center;
 
+}
+
+.pagination a {
+  text-decoration: none;
+  color: #e93e58;
+  margin: 0 auto;
+
+  padding: 8px 16px;
+}
+
+.pagination1 a.active {
+  background-color: #4CAF50;
+  color: #FFF;
+}
+
+.pagination1 a:hover {
+  background-color: #DDD;
+}
+
+
+
+.pagination3 a {
+  transition: background-color 0.3s;
+}
 
 .footer {
   background-color: var(--secondary-color);
