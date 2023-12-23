@@ -272,7 +272,7 @@ font-size: 13px !important;
     .poll-options {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+      
     }
     
     button {
@@ -337,7 +337,7 @@ font-size: 13px !important;
   border: none;
   border-radius: 3px;
   color: #333;
-  cursor: pointer;
+  
   padding: 0.5rem 1rem;
   text-decoration: none;
   transition: background-color 0.2s;
@@ -506,7 +506,7 @@ font-size: 13px !important;
   padding: 8px;
   text-align: right;
 }
- .mpoll tbody tr td.actions .view,  .mpoll tbody tr td.actions .edit,  .mpoll tbody tr td.actions .delete-p {
+ .mpoll tbody tr td.actions .view,  .mpoll tbody tr td.actions .edit,.turnon , .mpoll tbody tr td.actions .delete-p {
   display: inline-flex;
   text-align: right;
   text-decoration: none;
@@ -522,6 +522,9 @@ font-size: 13px !important;
 }
  .mpoll tbody tr td.actions .edit {
   background-color: rgb(169, 196, 15);
+}
+.mpoll tbody tr td.actions .turnon {
+  background-color: rgb(40, 37, 37);
 }
  .mpoll tbody tr td.actions .edit:hover {
   background-color: rgb(122, 137, 36);

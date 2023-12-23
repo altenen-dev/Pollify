@@ -25,15 +25,17 @@ include "./init/header.php";
                 echo $getpolls["question"]; ;
                 echo "</td>";
                 if ($getpolls["status"] == '1'){
+                    $active= true;
                     echo "<td >";
                     echo "active" ;
                     echo "</td>";
                 }elseif ($getpolls["status"] == '0') {
+                    $active= false;
                     echo "<td >";
                     echo "deactivated" ;
                     echo "</td>";
                 }
-                if ($getpolls["status"] != '0000-00-00'){
+                if ($getpolls["edate"] != '0000-00-00'){
                     echo "<td > ";
                     echo $getpolls["edate"]; ;
                     echo "</td>";
@@ -44,7 +46,21 @@ include "./init/header.php";
                 }
                 ?>
                <td class="actions">
-             <a href="deactivate.php?id=<?php echo $getpolls["qid"];?>" class="edit" title="deactivate poll"><i class="fa fa-ban" aria-hidden="true"></i></a>   
+               <?php 
+               if( $active){
+
+                ?>
+
+                    <a href="deactivate.php?id=<?php echo $getpolls["qid"];?>" class="edit" title="deactivate poll"><i class="fa fa-ban" aria-hidden="true"></i></a> 
+<?php  
+               }else {
+                ?>
+
+                <a href="activate.php?id=<?php echo $getpolls["qid"];?>" class="turnon" title="deactivate poll"><i class="fa-solid fa-power-off" style="color: #80ff00;"></i></a>   
+<?php
+               }
+               ?>
+           
                 <a href="vote.php?id=<?php echo $getpolls["qid"];?>" class="view" title="View Poll"><i class="fas fa-eye fa-l"></i></a>
                 <a href="deletepoll.php?q=<?php echo $getpolls["qid"]?>" class="delete-p" title="Delete Poll"><i class="fas fa-trash fa-l"></i></a>
             </td></tr>
