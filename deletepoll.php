@@ -53,7 +53,7 @@ if (isset($_GET['q'])) {
             $stmt->execute([ $_GET['q'] ]);
             $msg = 'You have deleted the poll!';
         } else {
-            header('Location: dashboard.php');
+            header('Location: managepolls.php');
             exit;
         }
     }

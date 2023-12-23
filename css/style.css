@@ -118,7 +118,7 @@
     left: 50%;
     bottom: -1px;
     background: var( --main-color);
-    transition: width 0.3s ease, left 0.3 ease;
+
   }
 
   
@@ -550,13 +550,13 @@ font-size: 13px !important;
 .success {
     color: #4F8A10;
     background-color: #DFF2BF;
-    background-image: url('./css/svg/check-solid.svg');
+    background-image: url('./svg/check-solid.svg');
 }
 
 .error {
     color: #D8000C;
     background-color: #FFBABA;
-    background-image: url('./css/svg/xmark-solid.svg');
+    background-image: url('./svg/xmark-solid.svg');
 
 }
 

@@ -29,9 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $status = $getInfo['status'];
             $currentDate = new DateTime();
             $expiryDateTime = new DateTime($getInfo['edate']);
-            if (!$expiryDateTime == '0000-00-00') {
+            if (($expiryDateTime != '0000-00-00')) {
                 if ($status == 0 || $currentDate >= $expiryDateTime) {
-                    die("the poll is expired or deactivated");
+                    $flag =true;
+                    $error = "the poll is expired or deactivated";
                 }
             } else {
                 if ($status == 0) {
@@ -162,8 +163,7 @@ while ($getInfo = $sqlgetpoll->fetch()) {
         if ($status == 0) {
             $flag =true;
             $error = "the poll is expired or deactivated";
-           // exit();
-            //die();
+          
         }
     }
 

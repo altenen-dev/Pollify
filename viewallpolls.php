@@ -29,7 +29,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 
 ?>
 <style>
-   
+
 </style>
 
 <div class="container">
@@ -49,7 +49,20 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                 while ($row = $res_data->fetch()) {
                     $question = $row['question'];
                     $qid = $row['qid'];
+                    $status = $row['status'];
+                    $currentDate = new DateTime();
+                    $expiryDateTime = new DateTime($row['edate']);
+                    if (!$expiryDateTime == '0000-00-00') {
+                        if ($status == 0 || $currentDate >= $expiryDateTime) {
+                            $error = "the poll is expired or deactivated";
+                        }
+                    } else {
+                        if ($status == 0) {
 
+                            $error = "the poll is expired or deactivated";
+
+                        }
+                    }
 
                     ?>
                     <div class="card">
@@ -59,6 +72,16 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                             </h2>
                             <a href="./vote.php?id=<?php echo $qid; ?>"><button class="btn">More details</button></a>
                             <button href="" class="">view results</button>
+                            <?php
+                            if (isset($error)) {
+                                echo '<br>   <span  style="color:#EC8E23;font-size:12px">';
+
+                                echo $error;
+
+                                echo '</span>';
+
+                            }
+                            ?>
                             <div id="results">
 
                             </div>

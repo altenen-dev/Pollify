@@ -23,19 +23,39 @@ include "./init/header2.php"
 								while ($getInfo = $sqlgetpoll -> fetch()){
                                     $question = $getInfo['question'];
                                     $qid =$getInfo['qid'];
+                                    $status = $getInfo['status'];
+                                    $currentDate = new DateTime();
+                                    $expiryDateTime = new DateTime($getInfo['edate']);
+                                    if (!$expiryDateTime == '0000-00-00') {
+                                        if ($status == 0 || $currentDate >= $expiryDateTime) {
+                                            $error = "the poll is expired or deactivated";
+                                        }
+                                    } else {
+                                        if ($status == 0) {
+                
+                                            $error = "the poll is expired or deactivated";
+                
+                                        }
+                                    }
                                 
                          
-                                $sqlgetresult = $db -> prepare("SELECT * FROM `choices` WHERE qid= ?");
-                                $sqlgetresult -> bindValue(1, $qid);
-                                $sqlgetresult -> execute();
             ?>
              <div class="poll-container">
-            <!-- <form action="vote.php" method="post"> -->
             <div class="card">
             <div class="card-content">
                 <h2>  <?php echo htmlspecialchars($question); ?> </h2>
                 <a href="./vote.php?id=<?php echo $qid; ?>" ><button  class="btn">Vote</button></a>
                 <button href="" class="">view results</button>
+                <?php
+                            if (isset($error)) {
+                                echo '<br>   <span  style="color:#EC8E23;font-size:12px">';
+
+                                echo $error;
+
+                                echo '</span>';
+
+                            }
+                            ?>
                 <div id="results">
 
                 </div>

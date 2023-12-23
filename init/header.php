@@ -74,7 +74,7 @@ if (!$user -> LoggedIn() ){
  
           }else {
             echo '
-            <li><a class="navbutton" href="./mangepolls.php">manage polls</a></li>
+            <li><a class="navbutton" href="./managepolls.php">manage polls</a></li>
             <span class"logout">  <li><a class="navbutton" href="./logout.php"><i class="fa-solid  fa-lg fa-arrow-right-from-bracket"  style="--fa-inverse: rgb(95, 16, 29);--fa-li-margin:0px"></i> Logout</a></li> </span>';
           }
 

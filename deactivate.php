@@ -51,7 +51,7 @@ if (isset($_GET['id'])){
           
             $msg = 'You have deactivated the poll!';
         } else {
-            header('Location: dashboard.php');
+            header('Location: managepolls.php');
             exit;
         }
     }
