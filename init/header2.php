@@ -48,7 +48,7 @@ if (!empty($maintaince)){
   <!-- <div class="nav-wrapper "> -->
    
     <div class="logo">
-      <a href="#home"><img width="100px" height="auto" src="./css/logo11.png"></a>
+      <a href="./index.php"><img width="100px" height="auto" src="./css/logo11.png"></a>
     </div>
 
     <div class="toggle burger-menu"><a  class="burgermenu"> <i class="fa fa-bars "></i></a></div>

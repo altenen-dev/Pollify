@@ -36,19 +36,6 @@ if ($user->LoggedIn()) {
 ob_start();
 
 
-if (!empty($maintaince)) {
-
-  header('Location: maintenance');
-
-  die('Maintenance' . $maintaince);
-
-}
-
-if ($user->LoggedIn()) {
-
-  header('Location: dashbaord');
-
-}
 
 
 
@@ -67,7 +54,16 @@ if (!empty($_POST['signup'])) {
     $error = "please fill all the missing blanks !!";
 
   }
+  $regex = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/';
 
+  if (!preg_match($regex, $password)) {
+    $error = 'you entered password or confirm password not correctly !!';
+    $error = 'The password must contain at least one uppercase letter, one lowercase letter, and one digit!';
+
+  } elseif ($password !== $rpassword) {
+    $error = 'The password and confirm password do not match!';
+  }
+  
 
 
 

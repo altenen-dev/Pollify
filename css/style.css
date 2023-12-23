@@ -587,6 +587,16 @@ font-size: 13px !important;
   transition: background-color 0.3s;
 }
 
+
+.btn-container{
+  display: flex;
+  flex-direction: row;
+ 
+}
+.btn-container button {
+  margin: 10px 10px;
+}
+
 .footer {
   background-color: var(--secondary-color);
   color: white;

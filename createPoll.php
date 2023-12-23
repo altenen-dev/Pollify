@@ -159,8 +159,8 @@ if(empty($error)){
     <div id="pollBlock">
       <span class="title">Options:</span>
       <br>
-      Option 1 <input class="options" type="text" name="op[]" required<br>
-      Option 2 <input class="options" type="text" name="op[]" required<br>
+      Option 1 <input class="options" type="text" name="op[]" required/><br>
+      Option 2 <input class="options" type="text" name="op[]" required/><br>
     </div>
     End date : <input class="" type="date" name="enddate" <br>
     <button name="create" type="submit">Create Poll</button>

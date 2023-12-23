@@ -1,6 +1,6 @@
 <?php
 
-include "./init/header.php";
+include "./init/header2.php";
 
 
 

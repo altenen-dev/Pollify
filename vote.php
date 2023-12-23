@@ -1,7 +1,14 @@
 <?php 
 include './init/header2.php';
 
-if (isset($_GET['id'])){
+if (!isset($_GET['id'])){
+   
+    exit('you didn\'t entered the poll id right');
+    // exit('Poll with that ID does not exist.');
+    }
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!($user ->LoggedIn())){
    
     
@@ -9,12 +16,61 @@ if (isset($_GET['id'])){
         header("Location: login.php");
     
         die("Redirecting to login.php");
+
+
     
 }
+    try {
+        $db->beginTransaction();
+        $sqlgetpoll = $db -> query("SELECT * FROM `polls` WHERE  qid={$_GET['id']}");
+            while ($getInfo = $sqlgetpoll -> fetch()){
+                                
+                                $qid =$getInfo['qid'];
+                            $status = $getInfo['status']; 
+                        }
+
+        $uid = $_SESSION['user_id'];
+        $checkifv = $db -> query("SELECT * FROM responses WHERE qid= '{$_GET['id']}' and uid='$uid'");
+        $voted =false;
+                          if($checkifv->rowCount() !=0){
+                            $voted =true;
+                          }
+        if ($voted){
+            $error = 'you have voted already';
+            
+        }
+        If(empty($error)){
+
+        
+    $insertresponse = "INSERT INTO responses  VALUES (null,$uid,:questionId, :chid)";
+    $stmt = $db->prepare($insertresponse );
+    $stmt->bindValue(':questionId', $qid);
+    $stmt->bindValue(':chid', $_POST['poll_answer']);
+
+    $stmt->execute();
+
+    
+    // Update and increase the vote for the answer the user voted for
+    $stmt = $db->prepare('UPDATE choices SET votes = votes + 1 WHERE chid = ?');
+    $stmt->execute([ $_POST['poll_answer'] ]);
+   
+    $db->commit();
+    $created = "voted successfully!";
+     // Redirect user to the result page
+   //  header('Location: result.php?id=' . $_GET['id']);
+        }
+  } catch (PDOException $e) {
+    $db->rollBack();
+    $error = "Error creating vote";
+
+  }
+
+
+} 
 
 
 
-}
+
 
 
 ?>
@@ -64,7 +120,7 @@ if (isset($_GET['id'])){
             
             $sqlgetpoll = $db -> query("SELECT * FROM `polls` WHERE  qid={$_GET['id']}");
             $totalvotes = 0;
-								while ($getInfo = $sqlgetpoll -> fetch()){
+                while ($getInfo = $sqlgetpoll -> fetch()){
                                     $question = $getInfo['question'];
                                     $qid =$getInfo['qid'];
                                 $status = $getInfo['status']; 
@@ -87,6 +143,22 @@ if (isset($_GET['id'])){
             ?>
        <form action="vote.php?id=<?=$_GET['id']?>" method="post">
             <div class="container poll-vote">
+            <?php
+    if (isset($error)) {
+      echo '   <span id="error-m" class="error">';
+
+      echo $error;
+
+      echo '</span>';
+    
+    }
+
+    if (isset($created)) {
+        echo '<span class="success">';
+        echo $created;
+        echo '</span>';
+      }
+    ?>
                 <h2>  <?php echo htmlspecialchars($question); ?> </h2>
                
                 <div class="poll-options">
@@ -101,34 +173,34 @@ if (isset($_GET['id'])){
             <input type="radio" name="poll_answer" value="<?=htmlspecialchars($chid)?>">
             <?= htmlspecialchars($choice) ?>
         </label><br>
+                    
                     <?php
                     // $percentage = (($result['votes']) / $totalvotes) * 100 ;
                 }
+                echo ' </div>';
 
                     ?>
-                            <input type="submit" value="Vote" name="vote" class="vote">
-                            <button onclick="loadResults(<?php echo $qid; ?>)">Results</button>
+                    <div class="btn-container">
+                    <button style="" type="submit" value="Vote" name="vote">Vote</button>
+                            <button style="" onclick="loadResults(<?php echo $qid; ?>)">Results</button>
 
-                            <div>
-            <input type="submit" value="Vote" name="vote" class="vote">
-            <a href="result.php?id=<?=$poll['id']?>">View Result</a>
-        </div>
-                </div>
+                    </div>
+                           
+
                 <div id="results">
 
                 </div>
-                </div>
-                </div>
+
+
+               
          
             </form>
+            </div>
             <?php } ?>
 
 
 
 
-
-     
-    </form>
 </div>
 
 
