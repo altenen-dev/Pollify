@@ -172,8 +172,9 @@ while ($getInfo = $sqlgetpoll->fetch()) {
     $sqlgetresult->bindValue(1, $qid);
     $sqlgetresult->execute();
     ?>
+      <div class="container poll-vote">
     <form action="vote.php?id=<?= $_GET['id'] ?>" method="post">
-        <div class="container poll-vote">
+      
             <?php
             if (isset($error)) {
                 echo '   <span id="error-m" class="error">';
@@ -196,14 +197,15 @@ while ($getInfo = $sqlgetpoll->fetch()) {
 
             <div class="poll-options">
                 <?php
+                $first = 0;
                 while ($result = $sqlgetresult->fetch(PDO::FETCH_ASSOC)) {
-
+                      $first++;
                     $choice = $result['choice'];
                     $chid = $result['chid'];
 
                     ?>
                     <label>
-                        <input type="radio" name="poll_answer" value="<?= htmlspecialchars($chid) ?>">
+                        <input type="radio" <?php if($first == 1) { echo 'checked';} ?> name="poll_answer" value="<?= htmlspecialchars($chid) ?>">
                         <?= htmlspecialchars($choice) ?>
                     </label><br>
 
