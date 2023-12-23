@@ -56,7 +56,7 @@ include "./init/header.php";
                }else {
                 ?>
 
-                <a href="activate.php?id=<?php echo $getpolls["qid"];?>" class="turnon" title="deactivate poll"><i class="fa-solid fa-power-off" style="color: #80ff00;"></i></a>   
+                <a href="activate.php?id=<?php echo $getpolls["qid"];?>" class="turnon" title="activate poll"><i class="fa-solid fa-power-off" style="color: #80ff00;"></i></a>   
 <?php
                }
                ?>

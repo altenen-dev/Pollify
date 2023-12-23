@@ -229,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
         <form method="POST" action="">
             <!-- <label for="email">Email:</label><br> -->
-            <input type="email" id="email" name="email" placeholder="Email Address" required>
+            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars(isset($_POST['email']) ? $_POST['email'] : '') ?>" placeholder="Email Address" required>
             <br>
             <!-- <label for="password">Password:</label><br> -->
             <input type="password" id="password" name="password" placeholder="Password" required>

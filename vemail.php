@@ -12,7 +12,7 @@ if($result = $res->fetch()){
     
     
 }else {
-    echo 'email is available';
+    echo 'email is not registered';
 }
 $db= null;
 

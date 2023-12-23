@@ -313,16 +313,16 @@ a {
       </p>
     <?php sleep(3); } ?>
     <form method="POST" action="">
-      <input type="text" id="name" name="name" placeholder="Full name" required>
+      <input type="text" id="name" name="name" placeholder="Full name" value="<?php echo htmlspecialchars(isset($_POST['name']) ? $_POST['name'] : '') ?>" required>
       <br>
       <input type="email" id="email" onkeyup="validate_email(this.value)" name="email" placeholder="Email Address"
-        required>
+      value="<?php echo htmlspecialchars(isset($_POST['email']) ? $_POST['email'] : '') ?>" required>
         <p id="msg"></p>
       <br>
 
-      <input type="password" id="password" name="password" placeholder="Password" required>
+      <input type="password" id="password" name="password" placeholder="Password" value="<?php echo htmlspecialchars(isset($_POST['password']) ? $_POST['password'] : '') ?>" required>
       <br>
-      <input type="password" id="password2" name="password2" placeholder="Confirm Password" required>
+      <input type="password" id="password2" name="password2" placeholder="Confirm Password" value="<?php echo htmlspecialchars(isset($_POST['password2']) ? $_POST['password2'] : '') ?>" required>
       <br>
       <button type="submit" name="signup" value="Sign up">Signup</button>
       <br>
@@ -352,7 +352,7 @@ a {
                 document.getElementById("msg").style.color = "red";
                 document.getElementById("email").style.borderBottom = "2px solid red";
                
-              }else if (this.responseText.includes("email is available")) {
+              }else if (this.responseText.includes("email is not registered")) {
                 document.getElementById("msg").style.color = "green";  
        
       }
