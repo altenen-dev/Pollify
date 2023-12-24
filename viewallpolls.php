@@ -70,9 +70,8 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                             <h2>
                                 <?php echo htmlspecialchars($question); ?>
                             </h2>
-                            <a href="./vote.php?id=<?php echo $qid; ?>"><button class="btn">More details</button></a>
-                            <button href="" class="">view results</button>
-                            <?php
+                            <a href="./vote.php?id=<?php echo $qid; ?>"><button class="btn">More Details</button></a>
+                            <a href="results.php?id=<?php echo $qid; ?>"><button class="btn">View Results</button></a>                            <?php
                             if (isset($error)) {
                                 echo '<br>   <span  style="color:#EC8E23;font-size:12px">';
 
