@@ -68,12 +68,13 @@ if (!empty($_POST['signup'])) {
 
 
   //Check if the username is legit
+  $regex1 = '/^[a-zA-Z0-9._-]+@[a-zA-Z-_]+\.[a-zA-Z]{2,}$/';
 
-  if (strlen($email) < 6 || strlen($email) > 100) {
-
-    $error = 'email length is not valid !!';
-
-  }
+if (strlen($email) < 6 || strlen($email) > 100) {
+    $error = 'Email length is not valid!';
+} elseif (!preg_match($regex1, $email)) {
+    $error = 'Invalid email format!';
+}
 
 
 
