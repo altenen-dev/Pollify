@@ -58,7 +58,7 @@ if (!empty($_POST['signup'])) {
 
   if (!preg_match($regex, $password)) {
     $error = 'you entered password or confirm password not correctly !!';
-    $error = 'The password must contain at least one uppercase letter, one lowercase letter, and one digit!';
+    $error = 'The password must contain at least one uppercase letter, one lowercase letter, one digit, and the length must be 8 or more characters!';
 
   } elseif ($password !== $rpassword) {
     $error = 'The password and confirm password do not match!';
