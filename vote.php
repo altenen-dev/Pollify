@@ -70,8 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $db->commit();
             $created = "voted successfully!";
+
+
             // Redirect user to the result page
-            //  header('Location: result.php?id=' . $_GET['id']);
+            //header('Location: results.php?id=' . $_GET['id']);
+            //exit();
         }
     } catch (PDOException $e) {
         $db->rollBack();
@@ -92,57 +95,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <style>
-    .poll-vote form {
-        display: flex;
-        flex-flow: column;
-    }
+    .poll-vote {
+  display: flex;
+  flex-flow: column;
+}
 
-    .poll-vote form label {
-        padding-bottom: 10px;
-    }
+.poll-vote form {
+  display: flex;
+  flex-flow: column;
+}
 
-    .poll-vote form input[type="radio"] {
-        transform: scale(1.1);
-    }
+.poll-vote form label {
+  padding-bottom: 10px;
+}
 
-    .poll-vote form input[type="submit"],
-    .poll-vote form a {
-        display: inline-block;
-        padding: 8px;
-        border-radius: 5px;
-        background-color: #38b673;
-        border: 0;
-        font-weight: bold;
-        font-size: 14px;
-        color: #FFFFFF;
-        cursor: pointer;
-        width: 150px;
-        margin-top: 15px;
-    }
+.poll-vote form input[type="radio"] {
+  transform: scale(1.1);
+}
 
-    .poll-vote form input[type="submit"]:hover,
-    .poll-vote form a:hover {
-        background-color: #32a367;
-    }
+button[type="submit"][name="vote"],
+a.results {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-size: 14px;
+  font-weight: bold;
+  width: auto;
+  margin-right: 10px;
+  align-items: center
+}
 
-    .poll-vote form a {
-        text-align: center;
-        text-decoration: none;
-        background-color: #37afb7;
-        margin-left: 5px;
-    }
+button[type="submit"][name="vote"]:hover,
+a.results:hover {
+  background-color: #45a049;
+}
 
-    .poll-vote form a:hover {
-        background-color: #319ca3;
-    }
-
-    .total-votes {
-        color: white;
-        padding: 5px 10px;
-        background-color: #058081;
-        font-size: 14px;
-        font-weight: bold;
-    }
+.total-votes {
+  color: white;
+  padding: 5px 10px;
+  background-color: #058081;
+  font-size: 14px;
+  font-weight: bold;
+  font-size: 12px; 
+  padding: 8px 16px; 
+}
 </style>
 
 <?php
@@ -217,8 +217,7 @@ while ($getInfo = $sqlgetpoll->fetch()) {
                 ?>
                 <div class="btn-container">
                     <button style="" type="submit" value="Vote" name="vote">Vote</button>
-                    <button style="" onclick="loadResults(<?php echo $qid; ?>)">Results</button>
-
+                    <a class="results" href="results.php?id=<?= $qid ?>">Results</a>
                 </div>
 
 
