@@ -81,16 +81,14 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 
                             }
                             ?>
-                            <div id="results">
-
-                            </div>
-
+                          
 
                         </div>
 
                     </div>
 
                     <?php
+                    $error = null;
                 }
                 ?>
 
@@ -110,7 +108,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 
 
 
-        <div class="pagination pagination1 pagination3">
+        <div class="pagination pagination1">
             <a href="?pageno=1">&laquo;</a>
 
             <?php

@@ -7,15 +7,32 @@ include "./init/header.php";
 
 <?php
 $created = null;
+$optionsarr = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $question = $_POST["question"];
     $options = $_POST["op"];
   
+
+    foreach($options as $op){
+      if (!preg_match("/^.{1,100}$/", $op)) {
+        $error = "option must be not longer than 100 characters!";
+    }
+      if (trim($op) != '') {
+          $optionsarr[] = $op;
+      }
+  }  
+  if (count($optionsarr) <= 1) {
+        $error ="Please enter at least two choices";
+  }
+
+
+    if (!preg_match("/^.{1,300}$/", $question)) {
+      $errors = "question must be not longer than 300 characters!";
+  }
     if (empty($question) || empty($options)) {
   
       $error = "please fill all the missing blanks !!";
-
     }
  
 
@@ -23,6 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($endDate == null) {
     $status = 1;
   } else {
+    if (strtotime($endDate) < strtotime(date("Y-m-d"))){
+      $error = "Please enter valid end date!!";
+    
+    }
     $status = (strtotime($endDate) >= strtotime(date("Y-m-d"))) ? 1 : 0;
   }
 
@@ -52,17 +73,18 @@ if(empty($error)){
     $stmt->bindParam(':option', $option);
 
     foreach ($options as $option) {
-      if($option != ""){
+      if(trim($option) != ""){
+       
         $stmt->execute();
       }
      
     }
 
     $db->commit();
-    $created = "Poll created successfully!";
+    $created = "Poll created successfully!!";
   } catch (PDOException $e) {
     $db->rollBack();
-    $error = "Error creating poll";
+    $error = "Error in creating poll !!";
 
   }
 }
@@ -141,28 +163,31 @@ if(empty($error)){
   <form method="POST" id="form-c">
     <?php
     if (isset($error)) {
-      echo '   <span id="error-m" class="error">';
+      echo '<span id="error-m" class="error">';
 
       echo $error;
 
       echo '</span>';
     }
 
+
+    echo '<span id="error-m" class="error hide">';
+    echo '</span>';
     if (isset($created)) {
       echo '<span class="success">';
       echo $created;
       echo '</span>';
     }
     ?>
-    Question: <textarea name="question" name="q" col="20" maxlength="255" rows="3"></textarea><br>
+    Question: <textarea name="question" col="20"  maxlength="300" rows="3"><?php echo htmlspecialchars(isset($_POST["question"]) ? $_POST["question"] : '') ?></textarea><br>
 
     <div id="pollBlock">
       <span class="title">Options:</span>
       <br>
-      Option 1 <input class="options" type="text" name="op[]" required/><br>
-      Option 2 <input class="options" type="text" name="op[]" required/><br>
+      Option 1 <input class="options" type="text" name="op[]"/><br>
+      Option 2 <input class="options" type="text" name="op[]" /><br>
     </div>
-    End date : <input class="" type="date" name="enddate" <br>
+    End date : <input class="" type="date" value="<?php echo htmlspecialchars(isset($_POST['enddate']) ? $_POST['enddate'] : '') ?>"name="enddate" <br>
     <button name="create" type="submit">Create Poll</button>
     <button type="button" onclick="addMoreOp()">Add More Options</button>
   </form>
@@ -171,14 +196,16 @@ if(empty($error)){
   let c = 2;
   function addMoreOp() {
     if (c == 6) {
+      document.getElementById('error-m').classList.remove('hide');
       document.getElementById('error-m').innerHTML = 'Error..Max is 6 Options';
-      document.getElementById("error-m").classList.add("error")
+      document.getElementById("error-m").classList.add("error");
     } else {
       ++c;
       $("#pollBlock").append("Option " + c + " <input type='text' name='op[]'><br>");
 
     }
   }
+
 </script>
 
 <?php include './init/footer.php'; ?>

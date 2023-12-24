@@ -1,36 +1,21 @@
 <?php
 include './init/header2.php';
-
-try {
-    $db = new PDO("mysql:host=localhost;dbname=pollmaker", "root", "");
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Database connection failed: " . $e->getMessage();
-    exit;
-}
-// Retrieve the poll ID from the URL query parameter
 if (isset($_GET['id'])) {
     $qid = $_GET['id'];
 
-    // Query the database to get poll information and choices
     $sql = $db->prepare("SELECT question FROM polls WHERE qid = ?");
     $sql->execute([$qid]);
     $pollInfo = $sql->fetch(PDO::FETCH_ASSOC);
 
     $question = $pollInfo['question'];
-
-    // Query the database to get the choices and their vote counts for the poll
     $sql = $db->prepare("SELECT choice, votes FROM choices WHERE qid = ?");
     $sql->execute([$qid]);
     $choices = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-    // Calculate the total number of votes
     $totalVotes = 0;
     foreach ($choices as $choice) {
         $totalVotes += $choice['votes'];
     }
     
-    // Define an array of colors
     $colors = ['#FF6384', '#00C853', '#FFCE56', '#0D47A1', '#9966FF', '#FF9F40'];
 
     ?>
@@ -107,14 +92,16 @@ if (isset($_GET['id'])) {
 
     <h2><?= htmlspecialchars($question) ?></h2>
     <ul>
-        <?php $index = 0; ?>
-        <?php foreach ($choices as $choice) : ?>
-            <?php
+        <?php $index = 0; 
+         foreach ($choices as $choice) {
+            
             $choiceText = htmlspecialchars($choice['choice']);
             $votes = $choice['votes'];
-            $percentage = $totalVotes > 0 ? ($votes / $totalVotes) * 100 : 0;
+            $percentage = $totalVotes > 0 ?round(($votes / $totalVotes) * 100 ,2)  : 0;
             $color = $colors[$index % count($colors)];
             $index++;
+            
+         
             ?>
             <li class="choice">
                 <div class="choice-label"><?= $choiceText ?></div>
@@ -123,7 +110,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div><?= $votes ?> votes (<?= $percentage ?>%)</div>
             </li>
-        <?php endforeach; ?>
+        <?php } ?>
     </ul>
 
     <div class="back-button-container">

@@ -5,7 +5,9 @@ include "./init/header.php";
 ?>
 
 <header>
+
         <div class="banner h-100">
+        <span style="font-size:20px;text-align:left;color:#ed9168;">Welcome back, <?php echo $_SESSION['user_fname']; ?></span><br>
        Create a poll with simple steps
        
     </div>
@@ -54,17 +56,17 @@ include "./init/header.php";
                                 echo '</span>';
                             }
                             ?>
-                            <div id="results">
-
-                            </div>
+                           
                         </div>
                     </div>
 
-                <?php } ?>
+                <?php $error = null; } ?>
 
             </div>
+            
         </div>
-
+        <a class="link" style="color:#058081;text-align:center;display:inline-block;margin-left: 50%;
+transform: translateX(-50%);margin-bottom:7px" href="./viewallpolls.php">View more..</a>
     </main>
 
 </div>

@@ -121,7 +121,7 @@ if (strlen($email) < 6 || strlen($email) > 100) {
 
     $insertUser = $db->prepare("INSERT INTO `users` VALUES(NULL, :name, :email, :password)");
     $passwordhashed = password_hash($password, PASSWORD_DEFAULT);
-    $insertUser->execute(array(':name' => $username, ':password' => $passwordhashed, ':email' => $email));
+    $insertUser->execute(array(':name' => $name, ':password' => $passwordhashed, ':email' => $email));
 
     $done = "Your account has been created successfully you can login now!!";
 

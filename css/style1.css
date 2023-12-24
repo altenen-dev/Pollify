@@ -67,7 +67,7 @@
         /* Make the banner responsive on devices with a maximum width of 600px */
         @media screen and (max-width: 600px) {
             .banner {
-                font-size: 24px;
+                font-size: 28px;
   
             }
 

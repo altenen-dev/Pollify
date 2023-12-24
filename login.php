@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Authentication successful
             $_SESSION['user_id'] = $user['uid'];
             $_SESSION['user_name'] = $user['username'];
+            $_SESSION['user_fname'] = $user['name'];
             header("Location: dashboard.php");
             exit();
         } else {

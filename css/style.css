@@ -564,6 +564,7 @@ font-size: 13px !important;
 .pagination {
   display: inline-block;
   text-align: center;
+  
 
 }
 
@@ -571,7 +572,7 @@ font-size: 13px !important;
   text-decoration: none;
   color: #e93e58;
   margin: 0 auto;
-
+  transition: background-color 0.3s;
   padding: 8px 16px;
 }
 
@@ -586,10 +587,6 @@ font-size: 13px !important;
 
 
 
-.pagination3 a {
-  transition: background-color 0.3s;
-}
-
 
 .btn-container{
   display: flex;
@@ -599,6 +596,43 @@ font-size: 13px !important;
 }
 .btn-container button {
   margin: 10px 10px;
+}
+
+a:hover {
+  opacity: 0.9;
+  transition: ease-out cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.link {
+  position: relative;
+  transition: color .3s ease-in-out;
+
+  &::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      height: 3px;
+      background-color: #D65472;
+      transform: scaleX(0);
+      transition: transform .3s ease-in-out;
+  }
+
+  &:hover {
+      color: #D65472;
+  }
+
+  &:hover::before {
+      transform: scaleX(1);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.hide {
+  display: none;
 }
 
 .footer {
