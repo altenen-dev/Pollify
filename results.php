@@ -8,15 +8,18 @@ try {
     echo "Database connection failed: " . $e->getMessage();
     exit;
 }
+// Retrieve the poll ID from the URL query parameter
 if (isset($_GET['id'])) {
     $qid = $_GET['id'];
 
+    // Query the database to get poll information and choices
     $sql = $db->prepare("SELECT question FROM polls WHERE qid = ?");
     $sql->execute([$qid]);
     $pollInfo = $sql->fetch(PDO::FETCH_ASSOC);
 
     $question = $pollInfo['question'];
 
+    // Query the database to get the choices and their vote counts for the poll
     $sql = $db->prepare("SELECT choice, votes FROM choices WHERE qid = ?");
     $sql->execute([$qid]);
     $choices = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -36,6 +39,8 @@ if (isset($_GET['id'])) {
         h2 {
             font-size: 24px;
             margin-bottom: 20px;
+            margin-right:50px;
+            margin-left: 50px;
         }
 
         ul {
