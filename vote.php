@@ -96,12 +96,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .poll-vote {
   display: flex;
   flex-flow: column;
-  height: 400px;
   align-items: center;
   margin: 0 auto;
 }
 .poll-vote form {
-padding-top: 100px;
+padding-top: 50px;
     align-self: center;
 }
 
@@ -193,6 +192,8 @@ while ($getInfo = $sqlgetpoll->fetch()) {
                 echo '</span>';
             }
             ?>
+            <br>
+            <br>
             <h2>
                 <?php echo htmlspecialchars($question); ?>
             </h2>

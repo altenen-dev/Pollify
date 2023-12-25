@@ -38,6 +38,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
 
         <br>
         <h1 class="title"> Public Polls:</h1>
+        <p style="color:grey;margin-left:10px">Here you can see all the polls</p>
         <div class="card-container">
             <div class="poll-container">
 

@@ -154,7 +154,8 @@ if (isset($_SESSION['user_id'])) {
       width: 100%;
       place-items: center;
       font-family: 'Poppins', sans-serif;
-      background: rgb(233,62,88);
+      /* background: rgb(233,62,88); */
+      /* background: linear-gradient(135deg, #1B8AF1, #B58DED); */
 background: linear-gradient(248deg, rgba(233,62,88,1) 18%, rgba(141,87,64,1) 49%, rgba(5,128,129,1) 79%); 
     }
 
@@ -190,23 +191,20 @@ background: linear-gradient(248deg, rgba(233,62,88,1) 18%, rgba(141,87,64,1) 49%
       margin: 0 auto;
       max-width: 26rem;
       width: 90%;
-
       border-radius: 15%;
       border: 2px solid white;
-      font-family: 'Poppins', sans-serif;
 
     }
 
     input[type=email],
     input[type=password],
+
     input[type=text] {
       width: 90%;
       padding: 12px 20px;
       margin: 12px 10px;
       display: inline-block;
-
       box-sizing: border-box;
-
 
       outline: none;
       color: #999;
@@ -219,6 +217,7 @@ background: linear-gradient(248deg, rgba(233,62,88,1) 18%, rgba(141,87,64,1) 49%
 
     input[type=email],
     input[type=password],
+    input[type=checkbox],
     input[type=text]:focus::placeholder {
       color: #b3b3b3;
     }
@@ -307,7 +306,10 @@ a {
       <br>
 
       <input type="password" id="password" name="password" placeholder="Password" value="<?php echo htmlspecialchars(isset($_POST['password']) ? $_POST['password'] : '') ?>" required>
+    <br>
+    <input type="checkbox" onclick="showpass()">Show Password
       <br>
+     
       <input type="password" id="password2" name="password2" placeholder="Confirm Password" value="<?php echo htmlspecialchars(isset($_POST['password2']) ? $_POST['password2'] : '') ?>" required>
       <br>
       <button type="submit" name="signup" value="Sign up">Signup</button>
@@ -318,7 +320,16 @@ a {
   </div>
 
 
-
+<script>
+   function showpass() {
+    var ps = document.getElementById("password");
+    if (ps.type === "password") {
+      ps.type = "text";
+    } else {
+      ps.type = "password";
+    }
+  } 
+</script>
 
    
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
