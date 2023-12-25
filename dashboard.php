@@ -31,7 +31,7 @@ include "./init/header.php";
                     $status = $getInfo['status'];
                     $currentDate = new DateTime();
                     $expiryDateTime = new DateTime($getInfo['edate']);
-                    if (!$expiryDateTime == '0000-00-00') {
+                    if ($getInfo['edate'] != '0000-00-00') {
                         if ($status == 0 || $currentDate >= $expiryDateTime) {
                             $error = "the poll is expired or deactivated";
                         }

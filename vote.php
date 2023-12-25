@@ -158,7 +158,7 @@ while ($getInfo = $sqlgetpoll->fetch()) {
     $expiryDateTime = new DateTime($getInfo['edate']);
     if ($getInfo['edate'] != '0000-00-00') {
         if ($status == 0 || $currentDate >= $expiryDateTime) {
-            die("the poll is expired or deactivated");
+           $error = "the poll is expired or deactivated";
         }
     } else {
         if ($status == 0) {
@@ -233,13 +233,13 @@ while ($getInfo = $sqlgetpoll->fetch()) {
             $totalVotesResult = $sqlTotalVotes->fetch(PDO::FETCH_ASSOC);
             $totalVotes = $totalVotesResult['total_votes'];
     ?>
-
+<?php } ?>
     <div class="total-votes">
         Total Votes:
         <?php echo $totalVotes; ?>
     </div>
     </div>
-<?php } ?>
+
 
 
 

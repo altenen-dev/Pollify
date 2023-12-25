@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     foreach ($choices as $choice) {
         $totalVotes += $choice['votes'];
     }
-    
+
     $colors = ['#FF6384', '#00C853', '#FFCE56', '#0D47A1', '#9966FF', '#FF9F40'];
 
     ?>
@@ -24,8 +24,9 @@ if (isset($_GET['id'])) {
         h2 {
             font-size: 24px;
             margin-bottom: 20px;
-            margin-right:50px;
+            margin-right: 50px;
             margin-left: 50px;
+            margin-top: 20px;
         }
 
         ul {
@@ -57,67 +58,98 @@ if (isset($_GET['id'])) {
             border-radius: 10px;
             overflow: hidden;
             background-color: #ddd;
+           
         }
 
         .choice-progress {
             height: 100%;
             transition: width 0.5s ease-in-out;
         }
+
         .back-button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #4CAF50;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-    }
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
 
-    .back-button:hover {
-        background-color: #45a049;
-    }
-
-    
-    .back-button-container {
-        margin-top: 20px;
-        text-align: center;
-    }
-
-    .footer {
-        margin-top: 10px;
-    }
+        .back-button:hover {
+            background-color: #45a049;
+        }
 
 
+        .back-button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 10px;
+        }
+
+        .total-votes {
+            color: white;
+            padding: 5px 10px;
+            background-color: #058081;
+            font-size: 14px;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 8px 16px;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            margin: 0 auto;
+            width: 30%
+        }
     </style>
 
-    <h2><?= htmlspecialchars($question) ?></h2>
+    <h2>
+        <?= htmlspecialchars($question) ?>
+    </h2>
     <ul>
-        <?php $index = 0; 
-         foreach ($choices as $choice) {
-            
+        <?php $index = 0;
+        foreach ($choices as $choice) {
+
             $choiceText = htmlspecialchars($choice['choice']);
             $votes = $choice['votes'];
-            $percentage = $totalVotes > 0 ?round(($votes / $totalVotes) * 100 ,2)  : 0;
+            $percentage = $totalVotes > 0 ? round(($votes / $totalVotes) * 100, 2) : 0;
             $color = $colors[$index % count($colors)];
             $index++;
-            
-         
+
+
             ?>
             <li class="choice">
-                <div class="choice-label"><?= $choiceText ?></div>
+                <div class="choice-label">
+                    <?= $choiceText ?>
+                </div>
                 <div class="choice-bar">
                     <div class="choice-progress" style="width: <?= $percentage ?>%; background-color: <?= $color ?>;"></div>
                 </div>
-                <div><?= $votes ?> votes (<?= $percentage ?>%)</div>
+                <div>
+                    <?= $votes ?> votes (
+                    <?= $percentage ?>%)
+                </div>
             </li>
         <?php } ?>
     </ul>
-
+    <?php
+    $sqlTotalVotes = $db->prepare("SELECT COUNT(*) as total_votes FROM `responses` WHERE qid = ?");
+    $sqlTotalVotes->execute([$qid]);
+    $totalVotesResult = $sqlTotalVotes->fetch(PDO::FETCH_ASSOC);
+    $totalVotes = $totalVotesResult['total_votes'];
+    ?>
+    <div class="total-votes">
+        Total Votes:
+        <?php echo $totalVotes; ?>
+    </div>
     <div class="back-button-container">
-    <a class="back-button" href="vote.php?id=<?= $qid ?>">Back to Poll</a>
+        <a class="back-button" href="vote.php?id=<?= $qid ?>">Back to Poll</a>
     </div>
 
-<?php
+    <?php
 } else {
     echo "Invalid poll ID.";
 }

@@ -53,7 +53,7 @@ $total_pages = ceil($total_rows / $no_of_records_per_page);
                     $status = $row['status'];
                     $currentDate = new DateTime();
                     $expiryDateTime = new DateTime($row['edate']);
-                    if (!$expiryDateTime == '0000-00-00') {
+                    if ($row['edate'] != '0000-00-00') {
                         if ($status == 0 || $currentDate >= $expiryDateTime) {
                             $error = "the poll is expired or deactivated";
                         }

@@ -82,6 +82,9 @@ if(empty($error)){
 
     $db->commit();
     $created = "Poll created successfully!!";
+    sleep(1);
+    
+
   } catch (PDOException $e) {
     $db->rollBack();
     $error = "Error in creating poll !!";
@@ -177,6 +180,7 @@ if(empty($error)){
       echo '<span class="success">';
       echo $created;
       echo '</span>';
+      header('Location: managepolls.php');
     }
     ?>
     Question: <textarea name="question" col="20"  maxlength="300" rows="3"><?php echo htmlspecialchars(isset($_POST["question"]) ? $_POST["question"] : '') ?></textarea><br>
