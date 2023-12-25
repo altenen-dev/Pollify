@@ -7,7 +7,7 @@ include "./init/header.php";
 <header>
 
         <div class="banner h-100">
-        <span style="font-size:20px;text-align:left;color:#ed9168;">Welcome back, <?php echo $_SESSION['user_fname']; ?></span><br>
+        <span style="font-size:20px;text-align:left;color:rgb(0, 255, 157);">Welcome back, <?php echo $_SESSION['user_fname']; ?></span><br>
        Create a poll with simple steps
        
     </div>
