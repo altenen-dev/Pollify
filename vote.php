@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $status = $getInfo['status'];
             $currentDate = new DateTime();
             $expiryDateTime = new DateTime($getInfo['edate']);
-            if (($expiryDateTime != '0000-00-00')) {
+            if (($getInfo['edate'] != '0000-00-00')) {
                 if ($status == 0 || $currentDate >= $expiryDateTime) {
                     $flag =true;
                     $error = "the poll is expired or deactivated";
@@ -72,9 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $created = "voted successfully!";
 
 
-            // Redirect user to the result page
-            //header('Location: results.php?id=' . $_GET['id']);
-            //exit();
+            
         }
     } catch (PDOException $e) {
         $db->rollBack();
@@ -98,12 +96,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .poll-vote {
   display: flex;
   flex-flow: column;
+  height: 400px;
+  align-items: center;
+  margin: 0 auto;
+}
+.poll-vote form {
+padding-top: 100px;
+    align-self: center;
 }
 
-.poll-vote form {
-  display: flex;
-  flex-flow: column;
-}
+
 
 .poll-vote form label {
   padding-bottom: 10px;
@@ -210,7 +212,7 @@ while ($getInfo = $sqlgetpoll->fetch()) {
                     </label><br>
 
                     <?php
-                    // $percentage = (($result['votes']) / $totalvotes) * 100 ;
+                
                 }
                 echo ' </div>';
 
@@ -218,11 +220,6 @@ while ($getInfo = $sqlgetpoll->fetch()) {
                 <div class="btn-container">
                     <button style="" type="submit" value="Vote" name="vote">Vote</button>
                     <a class="results" href="results.php?id=<?= $qid ?>">Results</a>
-                </div>
-
-
-                <div id="results">
-
                 </div>
 
 
