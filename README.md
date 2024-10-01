@@ -67,4 +67,4 @@ The project uses a MySQL database with the following key tables:
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/altenen-dev/poll-maker
+   git clone https://github.com/altenen-dev/poll-maker.git
