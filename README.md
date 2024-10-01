@@ -53,7 +53,9 @@ The Poll Maker Website is a web application designed to allow users to create, p
 The project uses a MySQL database with the following key tables:
 1. **Users**: Stores user information including name, email, and hashed password.
 2. **Polls**: Stores poll information such as the title/question, options, and poll creator.
-3. **Votes**: Stores the votes cast by users, ensuring that only one vote per user per poll is allowed.
+3. **Responses**: Stores the votes cast by users, ensuring that only one vote per user per poll is allowed.
+4. **Choices**: Stores the choices of the users polls.
+5. **settings**: Stores the the information of the website, like if in maintenence mode , website name.
 
 ## Installation & Setup
 
