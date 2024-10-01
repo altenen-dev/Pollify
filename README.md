@@ -1,7 +1,7 @@
-# Poll Maker Website
+Pollify
 
 ## Project Overview
-The Poll Maker Website is a web application designed to allow users to create, participate in, and manage polls. Built as part of the ITCS333 course, the main goal is to use web development tools and techniques to create a functional, simple, and responsive website from scratch. The site allows both guests and registered users to browse polls, vote on them, and view results, with registered users having additional privileges such as creating new polls and managing their profiles.
+Pollify Website is a web application designed to allow users to create, participate in, and manage polls. Built as part of the ITCS333 course, the main goal is to use web development tools and techniques to create a functional, simple, and responsive website from scratch. The site allows both guests and registered users to browse polls, vote on them, and view results, with registered users having additional privileges such as creating new polls and managing their profiles.
 
 ## Features
 
